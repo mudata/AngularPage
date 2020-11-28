@@ -1,0 +1,60 @@
+
+<mat-card class="card p-4 bg-light shadow mt-3">
+    <form (submit)=addItem() #itemForm="ngForm" enctype="multipart/form-data" method="post">
+        <mat-card-header>
+            <mat-card-title>Add Item to Menu</mat-card-title>
+        </mat-card-header>
+
+
+        <div *ngIf="imagePreview !== '' && imagePreview" class="text-center">
+            <img [src]="imagePreview" mat-card-image class="img-fluid img-thumbnail mt-2" style="max-height: 300px" />
+        </div>
+
+        <mat-card-content>
+            <mat-form-field class="w-100">
+
+                <input matInput type="text" name="title" class="bg-light" [(ngModel)]="item.title" required #title='ngModel' minlength="3" placeholder="Item Title" />
+
+                <mat-error *ngIf="title.errors?.required">
+                    Item Title required</mat-error>
+                <mat-error *ngIf="title.errors?.minlength">
+                    Minimum 3 Letters Title</mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="w-100">
+
+                <input matInput type="text" name="category" class="bg-light" [(ngModel)]="item.category" required #category='ngModel' minlength="3" placeholder="Item Category" />
+
+                <mat-error *ngIf="category.errors?.required">
+                    Item Category required</mat-error>
+                <mat-error *ngIf="category.errors?.minlength">
+                    Minimum 3 Letters Category</mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="w-100">
+                <input matInput type="text" name="price" class="bg-light" [(ngModel)]="item.price" #price='ngModel' placeholder="Item Price" />
+            </mat-form-field>
+
+            <ckeditor id="editor" class="editor text-left mb-5 mt-" name="disc" [(ngModel)]="item.disc" #disc="ngModel" required></ckeditor>
+
+            <mat-error *ngIf="disc.errors?.required&& disc.touched">
+                <small>Item discription is required</small></mat-error>
+
+        </mat-card-content>
+        <hr />
+
+        <button mat-raised-button type="submit" color="accent" class="float-right" [disabled]="!itemForm.valid">
+      ADD
+    </button>
+
+
+        <div class="">
+            <button mat-stroked-button color="accent" type="button" (click)="filePicker.click()">
+        Pick Image
+      </button>
+      <!-- #filePicker ([ngModel])="fileToUpload" -->
+            <input class="d-none" type="file" name="postImage" file-model = "myFile" #filePicker (change)="onImagePicked($event)" />
+        </div>
+    </form>
+</mat-card>
+

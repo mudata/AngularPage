@@ -1,0 +1,31 @@
+
+.mat-card-header {
+    display: block;
+    text-align: center;
+}
+.btn-block{
+background-color: #854811;
+color: white;
+font-size: xx-large;
+}
+.login-wrapper{
+    height: 700px;
+    width: 600px;
+margin: auto;
+padding: 60px 68px 40px;
+}
+.mat-card{
+    height: 600px;
+    width: 500px;
+
+}
+.mat-form-field-infix{
+    width:300px
+}
+.mat-card-actions, .mat-card-content, .mat-card-subtitle{
+    padding:0px 68px 40px;
+}
+
+.mat-card-content>:last-child:not(.mat-card-footer), .mat-card>:last-child:not(.mat-card-footer) {
+    text-align: -webkit-center;
+}

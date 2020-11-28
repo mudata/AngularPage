@@ -1,0 +1,4 @@
+li.img-fluid img {
+    width: 100px;
+    overflow-wrap: break-word;
+}

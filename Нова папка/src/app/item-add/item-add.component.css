@@ -1,0 +1,10 @@
+:host ::ng-deep .ck-editor__editable_inline {
+    min-height: 500px;
+}
+body{
+    /* background-image: url("bg.jpg"); */
+    height: 100%;
+    background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}

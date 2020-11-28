@@ -1,0 +1,31 @@
+<div class="my-5" *ngIf="item">
+
+    <mat-card class="w-card mt-4 ml-1 shadow">
+        <mat-card-header class="d-flex justify-content-center">
+            <mat-card-title>{{item.title}}</mat-card-title>
+        </mat-card-header>
+        <div class="d-flex justify-content-center">
+            <img class="feature-image img-fluid" src={{item.image}}>
+        </div>
+        <mat-card-content>
+            <ul class="list-group">
+                <li class="list-group-item my-2 img-fluid" id="disc" innerHTML={{item.disc}}></li>
+                <!-- <li class="list-group-item my-2 img-fluid" id="description" innerHTML={{item.description}}></li> -->
+            </ul>
+
+            <ul class="list-group">
+                <li class="list-group-item"><b>PRICE:</b> <span class="float-right">{{item.price | currency:'USD'}} </span></li>
+            </ul>
+        </mat-card-content>
+
+        <mat-card-actions>
+            <div class="text-right">
+                <!-- <button mat-button color="accent"> <i class="fa fa-edit"></i> DELETE</button> -->
+                <!-- <button mat-button color="primary"> <i class="fa fa-edit"></i> EDIT</button> -->
+                <button class="btn btn-primary" (click)="addToCart(item)"><i class="fa fa-cart-plus"></i>Add to Cart</button>
+            </div>
+
+        </mat-card-actions>
+
+    </mat-card>
+</div>

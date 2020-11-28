@@ -1,0 +1,95 @@
+<div style="height: auto;float: left;">
+<div class="sidebar">
+  <p>Choose Category</p>
+
+  <ul>
+    <li>
+      <a (click)="ngOnInit()">Vsichki</a>
+    </li>
+    <li *ngFor="let category of categories">
+      <a (click)="searchItem(category)">{{category}}</a>
+    </li>
+    
+  </ul>
+
+</div>
+
+<div class="content">
+
+  <!-- Search bar-->
+   <div class="s003">
+    <form >
+      <div class="inner-form">
+        <div class="input-field first-wrap">
+          <div class="input-select">
+            <p>Избери Категория</p>
+            <select data-trigger="" name="choices-single-defaul">
+             
+              <option >Vsichki</option>
+              <option *ngFor="let category of categories" >{{category}}</option>
+
+            </select>
+          </div>
+        </div>
+        <div class="input-field second-wrap">
+          <input id="search" type="text" placeholder="Enter Keywords?" name="text" />
+        </div>
+        <div class="input-field third-wrap">
+          <button class="btn-search" type="button" (click)="searchBar()">
+            <svg class="svg-inline--fa fa-search fa-w-16" aria-hidden="true" data-prefix="fas" data-icon="search" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+              <path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </form>
+  </div> 
+  <article>
+    <h2><span>Sort By: </span></h2>
+    <select (change)="selectChangeHandler($event)">
+        <option value="ime">Име</option>
+        <option value="naievtini">Първо най - евтини</option>
+        <option value="naiskupi">Първо най - скъпи</option>
+
+    </select>
+    <p><span>You selected: </span><b>{{selected}}</b></p>
+</article>
+
+  <!-- end -->
+
+  <div class="row">
+
+
+  <div class="col-lg-4 col-md-12 card-deck"  *ngFor="let item of items">
+    <div class="card shadow ">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-6">
+            <a>
+              <img src={{item.image}} class="img-fluid">
+            </a>
+          </div>
+          <div class="col-6">
+            <a>
+              <strong>{{item.title}}</strong>
+            </a>
+            <h6>
+              <strong>{{item.price | currency:'USD'}}</strong>
+            </h6>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer text-center">
+        <button mat-button color="accent" (click)="deleteItem(item)"> DELETE</button>
+        <button mat-button color="primary" [routerLink]="['/detail', item._id]">MORE</button>
+        <button class="btn btn-primary" (click)="addToCart(item)"><i class="fa fa-shopping-cart"></i>Add to
+          Cart</button>
+      </div>
+    </div>
+  </div>
+</div>
+    
+  </div>
+
+</div>
+

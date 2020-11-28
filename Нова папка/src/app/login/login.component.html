@@ -1,0 +1,51 @@
+<!-- 
+  <div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+    <mat-card class="box">
+      <mat-card-header>
+        <mat-card-title style="font-size:xx-large;">Login</mat-card-title>
+      </mat-card-header>
+  
+      <form class="example-form">
+  
+        <mat-card-content>
+          <mat-form-field class="example-full-width" style="font-size:xx-large;">
+            <input #userUsername matInput placeholder="Username" type="username" name="username" id="username"
+            (keyup)="updateInputValue('username', userUsername.value)"
+            >
+          </mat-form-field><br>
+
+          <mat-form-field class="example-full-width" style="font-size:xx-large;">
+            <input #userPassword matInput placeholder="Password" type="password" name="password" id="password"
+            (keyup)="updateInputValue('password', userPassword.value)"
+            >
+          </mat-form-field><br>
+  
+          <a href="/contact" class="login-help-link" data-uia="login-help-link">Need help?</a>
+        </mat-card-content>
+  
+        <button mat-stroked-button color="accent" (click)="submitFormHandler()" class="btn-block">Login</button>
+        <mat-card-actions>
+          <span>Don't have an account ? <a [routerLink]="['/register']" >register</a> here</span>
+        </mat-card-actions>
+      </form>
+    </mat-card>
+  </div>
+   -->
+   <mat-card>
+    <mat-card-header>
+      <mat-card-title>
+          <h4>Login</h4>
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <form>
+          <mat-form-field>
+                  <input [(ngModel)]="loginData.email" name="email" matInput placeholder="email" type="email">
+                </mat-form-field>
+               <mat-form-field>
+                  <input [(ngModel)]="loginData.password" name="password" matInput placeholder="password" type="password">
+               </mat-form-field>
+              <button (click)="post()" mat-raised-button color="primary">Login</button>
+          </form>
+      </mat-card-content>
+  </mat-card>

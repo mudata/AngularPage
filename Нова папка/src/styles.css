@@ -1,0 +1,27 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import '~bootstrap/dist/css/bootstrap.css';
+@import '~ngx-toastr/toastr';
+html,
+
+body {
+    
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    background: url('backgroundImg.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+    
+    }
+/* .bg{
+    background-image: url("bg.jpg");
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+} */
+.mat-drawer-content{
+  overflow: hidden;
+}
