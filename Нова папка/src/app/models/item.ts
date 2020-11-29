@@ -5,4 +5,5 @@ export interface Item {
   disc: string;
   image?: any;
   price: number;
+  comments:[];
 }
