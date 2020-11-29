@@ -14,15 +14,39 @@
             </ul>
 
             <ul class="list-group">
-                <li class="list-group-item"><b>PRICE:</b> <span class="float-right">{{item.price | currency:'USD'}} </span></li>
+                <li class="list-group-item"><b>PRICE:</b> <span class="float-right">{{item.price | currency:'USD'}}
+                    </span></li>
             </ul>
+            <div>
+
+                <ng-container>
+                    <!-- [formGroup]="commentform" -->
+                    <form class=""(submit)=commentIdea(item) #contactForm="ngForm" >
+                        <textarea class="" name="newComment" rows="2"[(ngModel)]="comment.newComment" placeholder="Comment here..." required>
+                        </textarea>
+                        <div>
+                            <button type="submit" class="btn detb" >Comment</button>
+                            <!--(click)="this.commentIdea(ideaModel)" -->
+                        </div>
+                    </form>
+                </ng-container>
+                <p></p>
+                <p class="infoType">Comments:</p>
+                <!-- <p *ngIf="!comments$?.length" class="comments comment">No comments yet :(</p> -->
+                <ul class="comments mb-5 pb-5">
+                    <ng-container *ngFor="let comment of item.comments">
+                        <li class="comment">{{comment.author}}:{{comment.text}}</li>
+                    </ng-container>
+                </ul>
+            </div>
         </mat-card-content>
 
         <mat-card-actions>
             <div class="text-right">
                 <!-- <button mat-button color="accent"> <i class="fa fa-edit"></i> DELETE</button> -->
                 <!-- <button mat-button color="primary"> <i class="fa fa-edit"></i> EDIT</button> -->
-                <button class="btn btn-primary" (click)="addToCart(item)"><i class="fa fa-cart-plus"></i>Add to Cart</button>
+                <button class="btn btn-primary" (click)="addToCart(item)"><i class="fa fa-cart-plus"></i>Add to
+                    Cart</button>
             </div>
 
         </mat-card-actions>

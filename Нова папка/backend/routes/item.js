@@ -3,7 +3,7 @@ const multer = require("multer");
 const Item = require("../models/item");
 const router = express.Router();
 const mongoose = require("mongoose");
-
+mongoose.set('useFindAndModify', false);
 const MIME_TYPE_MAP = {
     "image/png": "png",
     "image/jpeg": "jpg",
@@ -83,5 +83,28 @@ router.delete("/:id", (req, res, next) => {
         res.status(200).json({ message: "Item deleted!" });
     });
 });
+router.put("/:email",(req, res)=> {
+
+    console.log(req.body)
+    // Item.findOneAndUpdate({ _id: req.body.idOfItem }, function (err, doc){
+    //     console.log(doc.comments.push(req.body.text))
+    //     doc.comments.push(req.body.text)
+    //     // doc.name = 'jason bourne';
+    //     // doc.visits.$inc();
+    //     // doc.save();
+    //   });
+      Item.findOneAndUpdate(
+        { _id: req.body.idOfItem },
+         { $push: { comments: {text:req.body.text,author:req.params.email} } },
+        { upsert: true }, // upsert looks to find a Message with that id and if it doesn't exist creates the Message 
+         function(err, data) {
+             // Handle err
+     });
+  });
+//   var reply = {
+//     message: req.body.reply, 
+//     userFrom: req.user._id
+// };
+
 
 module.exports = router;

@@ -6,7 +6,8 @@ const postSchema = mongoose.Schema({
     category: { type: String, required: true },
     disc: { type: String, required: true },
     price: { type: Number, required: true },
-    image: { type: String, required: true }
+    image: { type: String, required: true },
+    comments: []
 });
 
 module.exports = mongoose.model("item", postSchema);
