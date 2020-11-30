@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit } from '@angular/core';
+import { Route, Router } from '@angular/router';
 import { CartService } from './cart.service';
 import { Item } from './models/item';
 
@@ -9,12 +10,13 @@ import { Item } from './models/item';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit , OnChanges {
   title = 'restaurant';
 
-  constructor(public cartService: CartService) { }
+  constructor(public cartService: CartService,public router:Router) { }
 
   ngOnInit() {
-   
+  }
+  ngOnChanges(){
   }
 }

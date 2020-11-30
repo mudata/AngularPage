@@ -4,9 +4,17 @@ const jwt = require('jwt-simple');
 const express = require('express');
 const router = express.Router();
 
-router.post('/register', (req, res) => {
+router.post('/register',async (req, res) => {
         const userData = req.body;
         console.log(userData)
+        const user2 =await  User.findOne({
+            email: userData.email
+        });
+       
+        if(user2){
+            console.log(user2)
+            return;
+        }
         const user = new User(userData);
         user.save((err, newUser) =>{
             if(err){

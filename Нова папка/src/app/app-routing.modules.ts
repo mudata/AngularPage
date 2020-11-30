@@ -23,7 +23,6 @@ const routes: Routes = [
   {  path: 'register',component: RegisterComponent },
   { path: 'about' , component: AboutComponent },
   { path: 'profile' , component: ProfileComponent },
-
 ];
 
 @NgModule({

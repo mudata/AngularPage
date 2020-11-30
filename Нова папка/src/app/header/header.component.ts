@@ -7,10 +7,14 @@ import { AuthService} from '../auth.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  lo:{}
   constructor(public cartService: CartService,public authService: AuthService) { }
-
+  
     
   ngOnInit(): void {
+    console.log(this.authService)
+//     this.lo=localStorage.getItem("email");
+// console.log(this.lo)
   }
 
 }

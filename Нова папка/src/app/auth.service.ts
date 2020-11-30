@@ -20,13 +20,22 @@ export class AuthService {
     get isAuthenticated(){
         return !!localStorage.getItem(this.TOKEN_KEY);
     }
+    get email(){
+        if(localStorage.getItem(this.emailName)==="mudata191@abv.bg"){
+            console.log("true")
+            return true;
+        }else{
+            return false;
+        }
+        // return !!localStorage.getItem(this.emailName);
+    }
     
     logout(){
         localStorage.clear();
-        localStorage.removeItem(this.TOKEN_KEY);
-        localStorage.removeItem(this.emailName);
-        localStorage.removeItem(this.name);
-        localStorage.removeItem(this.description);
+        // localStorage.removeItem(this.TOKEN_KEY);
+        // localStorage.removeItem(this.emailName);
+        // localStorage.removeItem(this.name);
+        // localStorage.removeItem(this.description);
     }
         
     registerUser(registerData){

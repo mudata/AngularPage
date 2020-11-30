@@ -33,7 +33,13 @@ export class LoginComponent {
   post(){
     console.log(this.loginData)
     this.authService.loginUser(this.loginData);
-    this.router.navigate(['/home']);
+    if(this.loginData.email=="mudata191@abv.bg"){
+      this.router.navigate(['/admin']);
+    }
+    else{
+      this.router.navigate(['']);
+    }
+   
 
 }
   // ngOnInit() {
