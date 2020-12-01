@@ -1,6 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { CartService } from '../services/cart.service';
-// import { Item } from '../models/item';
 
 import { Subject, interval, of, fromEvent, pipe } from "rxjs";
 import { ajax } from 'rxjs/ajax';
