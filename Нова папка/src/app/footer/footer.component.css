@@ -1,7 +1,9 @@
+
 .footer {
 	 background-color: white;
 	 margin: 0px auto;
 	 padding: 20px 0px;
+	 max-width: 100%;
 }
  .btn-facebook {
 	 color: #fff !important;

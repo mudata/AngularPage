@@ -19,7 +19,8 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
     this.name=localStorage.getItem("name")
     this.email=localStorage.getItem("email")
-    this.description=localStorage.getItem("description")
+    this.description=localStorage.getItem("description");
+    console.log(this.name,this.description,this.email)
     this.cartService.updateCartList();
     this.cartService.getCart().subscribe((items2) => {
 console.log(this.authService)
