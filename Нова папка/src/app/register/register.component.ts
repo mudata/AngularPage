@@ -1,63 +1,18 @@
-// import { Component, OnInit } from '@angular/core';
 
-// @Component({
-//   selector: 'app-register',
-//   templateUrl: './register.component.html',
-//   styleUrls: ['./register.component.css']
-// })
-
-// export class RegisterComponent implements OnInit {
-
-//   Roles: any = ['Admin', 'Author', 'Reader'];
-//   form = {
-//     username: {
-//       touched: false,
-//       value: ''
-//     },
-//     rePassword: {
-//       touched: false,
-//       value: ''
-//     },
-//     password: {
-//       touched: false,
-//       value: ''
-//     }
-//   };
-//   constructor() { }
-
-//   ngOnInit() {
-//   }
-//   updateInputValue(name: 'username' | 'password' | 'rePassword', value: string): void {
-//     this.form[name].touched = true;
-//     this.form[name].value = value;
-//     console.log(this.form[name])
-//   }
-//   submitFormHandler(): void {
-//     console.log(this.form)
-//     //const { email: { value: email }, password: { value: password } } = this.form;
-//     // this.isLoading = true;
-//     // this.errorMessage = '';
-//     //this.userService.login({ email, password }).subscribe({
-//       //next: (data) => {
-//         // this.isLoading = false;
-//         // this.router.navigate(['/']);
-//       //},
-//       //error: (err) => {
-//         // this.errorMessage = 'ERROR!';
-//         // this.isLoading = false;
-//      // }
-//     //});
-//   }
-// }
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../auth.service';
+import { AuthService } from '../services/auth.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AlertService } from '../services/alert.service';
 
 @Component({
   selector: 'retister',
   templateUrl: 'register.component.html'
 })
-export class RegisterComponent {
+export class RegisterComponent implements OnInit {
+  registerForm: FormGroup;
+    loading = false;
+    submitted = false;
   registerData = {
     email: "",
     password: "",
@@ -65,12 +20,44 @@ export class RegisterComponent {
     description: ""
   };
 
-  constructor(public authService: AuthService,  private router: Router) { }
+  constructor(
+    public authService: AuthService,
+      private router: Router,
+      private formBuilder: FormBuilder,
+      private alertService: AlertService
+      ) { }
 
   post() {
-    console.log(this.registerData);
+    this.submitted = true;
+
+        // reset alerts on submit
+        this.alertService.clear();
+
+        // stop here if form is invalid
+        if (this.registerForm.invalid) {
+            return;
+        }
+
+        this.loading = true;
+    console.log(this.registerForm.value);
+    this.registerData = {
+      email: this.registerForm.value.firstName,
+      password: this.registerForm.value.password,
+      name: this.registerForm.value.lastName,
+      description: this.registerForm.value.username
+    };
     this.authService.registerUser(this.registerData);
-    this.router.navigate(['/about']);
+    this.router.navigate(['']);
   
   }
+  ngOnInit(){
+    this.registerForm = this.formBuilder.group({
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      username: ['', Validators.required],
+      password: ['', [Validators.required, Validators.minLength(6)]]
+  });
+  }
+  get f() { return this.registerForm.controls; }
+
 }

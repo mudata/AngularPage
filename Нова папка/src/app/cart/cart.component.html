@@ -28,12 +28,12 @@
     <br />
     <br />
     <h2>Submit Details</h2>
-    <form #contactForm="ngForm" (submit)=submitOrder()>
+    <form #contactForm="ngForm" (submit)=submitOrder() name="myForm">
         <div class="row">
             <div class="col-12">
                 <mat-form-field appearance="outline" class="w-100">
                     <mat-label>Name</mat-label>
-                    <input type="tel" matInput placeholder="Name" name="name" [(ngModel)]="contact.name" >
+                    <input  required minlength="4" type="tel" matInput placeholder="Name" name="name" [(ngModel)]="contact.name" >
                     <mat-icon matSuffix>person</mat-icon>
                 </mat-form-field>
 
@@ -43,7 +43,7 @@
             <div class="col-12">
                 <mat-form-field appearance="outline" class="w-100">
                     <mat-label>Telephone</mat-label>
-                    <input type="tel" matInput placeholder="Telephone" name="tel" [(ngModel)]="contact.tel">
+                    <input required minlength="4" type="tel" matInput placeholder="Telephone" name="tel" [(ngModel)]="contact.tel">
                     <mat-icon matSuffix>mode_edit</mat-icon>
                 </mat-form-field>
 
@@ -53,17 +53,22 @@
             <div class="col-12">
                 <mat-form-field appearance="outline" class="w-100">
                     <mat-label>Email</mat-label>
-                    <input type="email" matInput placeholder="Email" name="email" [(ngModel)]="contact.email">
+                    <input type="email" required minlength="4" matInput placeholder="Email" name="email" [(ngModel)]="contact.email">
+                   
                     <mat-icon matSuffix>mode_edit</mat-icon>
+                    
                 </mat-form-field>
 
             </div>
         </div>
         <div class="action text-right mt-5">
-            <button mat-raised-button color="accent" type="submit">Submit <mat-icon matSuffix>send</mat-icon></button>
+            <button *ngIf="authService.isAuthenticated" mat-raised-button color="accent" type="submit">Submit <mat-icon matSuffix></mat-icon></button>
 
         </div>
     </form>
 
+</div>
+<div class="mt-5" style="padding: 0px 200px 0px 200px;  color:white" *ngIf="cartService.items.length == 0">
+    No Items
 </div>
 </div>

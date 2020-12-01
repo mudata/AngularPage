@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 // import {} from '.../backend/models/item';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { ItemService } from '../item.service';
+import { ItemService } from '../services/item.service';
 import { IItem } from "../interfaces/Item";
 
 

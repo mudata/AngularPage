@@ -1,16 +1,11 @@
 import { AfterViewInit, Component, OnInit} from '@angular/core';
-import { CartService } from '../cart.service';
+import { CartService } from '../services/cart.service';
 import { Item } from '../models/item'
 import { Router } from '@angular/router';
 import { IItem } from "../interfaces/Item";
-import { ItemService } from '../item.service';
+import { ItemService } from '../services/item.service';
+import { AuthService } from '../services/auth.service';
 
-
-
-export interface DialogData {
-  animal: string;
-  name: string;
-}
 
 @Component({
   selector: 'app-cart',
@@ -20,7 +15,11 @@ export interface DialogData {
 export class CartComponent implements OnInit {
 
   contact = { name: "", tel: "", email:"" };
-  constructor( public cartService: CartService, private router: Router) { }
+  constructor( 
+    public cartService: CartService,
+     private router: Router,
+     public authService: AuthService
+     ) { }
 
   items: IItem[]=[];
 
@@ -50,7 +49,7 @@ export class CartComponent implements OnInit {
   console.log("submit order");
   console.log(this.contact)
   if(this.contact.name==""||this.contact.email==""||this.contact.tel==""){
-    return
+    return;
   }
     this.cartService.submitOrder(this.contact);
     this.router.navigate(['/list']);

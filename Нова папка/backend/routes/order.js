@@ -1,5 +1,5 @@
 const express = require("express");
-const Cart = require("../models/cart");
+var Cart = require("../models/cart");
 const router = express.Router();
 const Order=require('../models/order');
 var nodemailer = require('nodemailer');
@@ -14,10 +14,10 @@ router.post("", (req, res, next) => {
     
     // console.log(req.body);
     // console.log(req.body._id);
-    // while(Cart.length > 0) {
-    //     Cart.pop();
+     while(Cart.length > 0) {
+         Cart.pop();
         
-    // }
+    }
 // console.log(req.body.orderData)
     var mailOptions = {
         from: `${req.body.contact.email}`,
@@ -31,6 +31,7 @@ router.post("", (req, res, next) => {
         if (error) {
           console.log(error);
         } else {
+          Cart=[];
           console.log('Email sent: ' + info.response);
         }
       });

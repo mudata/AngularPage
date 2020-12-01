@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { CartService } from '../cart.service';
+import { CartService } from '../services/cart.service';
 // import { Item } from '../models/item';
 
 import { Subject, interval, of, fromEvent, pipe } from "rxjs";
@@ -7,7 +7,7 @@ import { ajax } from 'rxjs/ajax';
 import { AjaxResponse } from 'rxjs/ajax'
 import { map, debounceTime, switchMap, mergeMap, timeout } from "rxjs/operators";
 import { IItem } from "../interfaces/Item";
-import { ItemService } from '../item.service';
+import { ItemService } from '../services/item.service';
 import { environment } from 'src/environments/environment';
 import { Router, Routes } from '@angular/router';
 import { HomeComponent } from '../home/home.component';
@@ -28,12 +28,11 @@ const apiUrl = environment.apiUrl;
 export class ItemListComponent implements OnInit {
   results = [];
   selected: string = '';
-  @ViewChild('movieSearchInput', { static: true }) movieSearchInput: ElementRef;
+  // @ViewChild('movieSearchInput', { static: true }) movieSearchInput: ElementRef;
   constructor(public cartService: CartService, private itemService: ItemService, public http: HttpClient) { }
   categories;
   b: false;
   search: FormGroup;
-  // items: Item[] = [];
   items: IItem[];
 
   ngOnInit() {
@@ -89,7 +88,26 @@ export class ItemListComponent implements OnInit {
     this.items = [];
     this.itemService.loadItemList().subscribe((items2) => {
       if (option == "Vsichki") {
-        this.items = items2["Items"]
+
+        if (text == "") {
+          this.items = items2["Items"];
+          return;
+        }
+        else{
+          const reg = RegExp(`${text.toLowerCase()}`)
+          let newarr = [];
+          console.log(newarr)
+          items2["Items"].forEach(element => {
+            if (reg.test(element.title.toLowerCase()) == true) {
+              newarr.push(element);
+            }
+          });
+          this.items = newarr;
+          console.log(newarr)
+        }
+
+        
+
       }
       else {
         items2['Items'].forEach(element => {
@@ -118,27 +136,27 @@ export class ItemListComponent implements OnInit {
     this.selected = event.target.value;
 
     if (this.selected == "ime") {
-    
+
       this.items.sort((a, b) => {
         return a.title.localeCompare(b.title);
       });
       // console.log(this.items);
     }
     if (this.selected == "naievtini") {
-    
+
       this.items.sort((a, b) => {
         return a.price - b.price;
       })
       // console.log(this.items);
-    
+
     }
     if (this.selected == "naiskupi") {
-     
+
       this.items.sort((a, b) => {
         return b.price - a.price;
       })
       // console.log(this.items);
- 
+
     }
   }
 }

@@ -29,24 +29,29 @@ router.get("", (req, res, next) => {
 });
 
 router.delete("/:id", (req, res, next) => {
+    
     console.log(req.params.id);
     console.log(Cart.toString())
     let cartx = Cart;
 
     newarr = [];
-
-    cartx.forEach(element => {
-        console.log(element._doc._id.toString());
-        if (element._doc._id.toString() !== req.params.id) {
-            console.log("2");
-            newarr.push(element);
-        }
-        else {
-            console.log("1");
-
-        }
-
-    })
+    if(req.params.id=="all"){
+        
+    }else{
+        cartx.forEach(element => {
+            console.log(element._doc._id.toString());
+            if (element._doc._id.toString() !== req.params.id) {
+                console.log("2");
+                newarr.push(element);
+            }
+            else {
+                console.log("1");
+    
+            }
+    
+        })
+    }
+    
 
     console.log(newarr)
     Cart = newarr

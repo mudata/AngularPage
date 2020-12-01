@@ -16,19 +16,21 @@ import { CartComponent } from './cart/cart.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { SearchComponent } from './search/search.component';
-import { ItemService } from './item.service';
+import { ItemService } from './services/item.service';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { AboutComponent } from './about/about.component';
-import { AuthService} from './auth.service';
+import { AuthService} from './services/auth.service';
 import { HomeComponent } from './home/home.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { AuthInterceptorService } from './authInterceptor.service';
+import { AuthInterceptorService } from './services/authInterceptor.service';
 import { ItemAddComponent } from './item-add/item-add.component';
 import { ItemListComponent } from './item-list/item-list.component';
 import { ItemDetailComponent } from './item-detail/item-detail.component';
 import { ProfileComponent } from './profile/profile.component';
 import {MatSelectModule} from '@angular/material/select';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -75,6 +77,7 @@ import {MatSelectModule} from '@angular/material/select';
     MatButtonModule, 
     MatCardModule, 
     MatToolbarModule, 
+    ReactiveFormsModule
   ],
   providers: [
     ItemService,

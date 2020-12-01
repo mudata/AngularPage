@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ItemService } from '../item.service';
+import { ItemService } from '../services/item.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { CartService } from '../cart.service';
+import { CartService } from '../services/cart.service';
 import { Item } from '../models/item';
 import { FormGroup } from '@angular/forms';
 import { environment } from 'src/environments/environment';

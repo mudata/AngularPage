@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from '../environments/environment';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class AuthService {
@@ -22,20 +22,14 @@ export class AuthService {
     }
     get email(){
         if(localStorage.getItem(this.emailName)==="mudata191@abv.bg"){
-            console.log("true")
             return true;
         }else{
             return false;
         }
-        // return !!localStorage.getItem(this.emailName);
     }
     
     logout(){
         localStorage.clear();
-        // localStorage.removeItem(this.TOKEN_KEY);
-        // localStorage.removeItem(this.emailName);
-        // localStorage.removeItem(this.name);
-        // localStorage.removeItem(this.description);
     }
         
     registerUser(registerData){
