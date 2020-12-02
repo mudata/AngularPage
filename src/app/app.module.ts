@@ -9,6 +9,12 @@ import {  MatInputModule, MatCardModule, MatButtonModule, MatToolbarModule, MatE
 import {MatBadgeModule} from '@angular/material/badge';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 // import { ToastrModule } from 'ngx-toastr';
+declare module "@angular/core" {
+  interface ModuleWithProviders<T = any> {
+    ngModule: Type<T>;
+    providers?: Provider[];
+  }
+}
 import { ContactComponent } from './contact/contact.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { FlexLayoutModule } from '@angular/flex-layout';
