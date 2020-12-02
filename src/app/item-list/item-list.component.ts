@@ -5,7 +5,7 @@ import { Subject, interval, of, fromEvent, pipe } from "rxjs";
 import { ajax } from 'rxjs/ajax';
 import { AjaxResponse } from 'rxjs/ajax'
 import { map, debounceTime, switchMap, mergeMap, timeout } from "rxjs/operators";
-import { IItem } from "../interfaces/Item";
+import { IItem } from "../interfaces/item";
 import { ItemService } from '../services/item.service';
 import { environment } from 'src/environments/environment';
 import { Router, Routes } from '@angular/router';

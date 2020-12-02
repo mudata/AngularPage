@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { ItemService } from '../services/item.service';
-import { IItem } from "../interfaces/Item";
+import { IItem } from "../interfaces/item";
 
 
 @Component({
