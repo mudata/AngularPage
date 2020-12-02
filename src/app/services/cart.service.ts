@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 // import { Item } from './models/item';
 import { HttpClient } from '@angular/common/http';
-import { IItem } from "../interfaces/Item";
+import { IItem } from "../interfaces/item";
 import { Router } from '@angular/router';
 
 @Injectable({
