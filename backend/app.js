@@ -7,7 +7,7 @@ const itemRoutes = require("./routes/item");
 const cartRoutes = require("./routes/cart");
 const orderRoutes = require("./routes/order");
 const emailRoutes = require("./routes/email");
-
+require('dotenv').config()
 
 const jwt = require('jwt-simple');
 const User = require('./models/User.js');
