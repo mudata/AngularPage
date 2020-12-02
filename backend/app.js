@@ -18,7 +18,8 @@ app.use(cors());
 app.use(bodyParser.json());
 mongoose
     .connect(
-        "mongodb://localhost:27017/examPrep", { useNewUrlParser: true, useUnifiedTopology: true  }
+        "mongodb+srv://admin:admin@cluster0.5hjmk.mongodb.net/examPrep?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true  }
+        // "mongodb://localhost:27017/examPrep", { useNewUrlParser: true, useUnifiedTopology: true  }
     )// pass option { useUnifiedTopology: true } to the MongoClient constructor.
     .then(() => {
         console.log("Connected to database!");
