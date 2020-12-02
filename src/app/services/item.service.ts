@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { IItem } from "../interfaces/Item";
+import { IItem } from "../interfaces/item";
 const apiUrl = environment.apiUrl;
 @Injectable()
 
