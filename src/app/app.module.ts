@@ -8,7 +8,7 @@ import { AppRoutingModule } from './app-routing.modules';
 import {  MatInputModule, MatCardModule, MatButtonModule, MatToolbarModule, MatExpansionModule, MatRadioModule, MatIconModule, MatTableModule, MatGridListModule, MatListModule, MatFormFieldModule, MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material';
 import {MatBadgeModule} from '@angular/material/badge';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { ToastrModule } from 'ngx-toastr';
+// import { ToastrModule } from 'ngx-toastr';
 import { ContactComponent } from './contact/contact.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -62,7 +62,7 @@ import {MatSelectModule} from '@angular/material/select';
     MatExpansionModule,
     FormsModule,
     HttpClientModule,
-    ToastrModule.forRoot(),
+    // ToastrModule.forRoot(),
     MatBadgeModule,
     CKEditorModule,
     MatIconModule,
