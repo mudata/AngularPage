@@ -16,7 +16,7 @@ const auth = require('./auth.js');
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
-const uri="mongodb+srv://martin:12345@cluster.cgzkw.mongodb.net/examPrep?retryWrites=true&w=majority"
+const uri="mongodb+srv://admin:admin@cluster0.ur9hj.mongodb.net/examPrep?retryWrites=true&w=majority"
 mongoose
     .connect( uri, { useNewUrlParser: true, useUnifiedTopology: true  }
         //"mongodb://localhost:27017/examPrep", { useNewUrlParser: true, useUnifiedTopology: true  }
