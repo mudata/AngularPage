@@ -1,15 +1,10 @@
 .col-md-4{
     /* background-color: rgba(0,0,0,.75); */
     text-align: center;
-    color:white
 }
 .jumbotron{
     background-color: transparent;
-    color:white
 }
 .mat-sidenav-container[_ngcontent-xpb-c1] {
     overflow: hidden;
-}
-.container{
-    color: white;
 }

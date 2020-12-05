@@ -7,7 +7,8 @@ import { AlertService } from '../services/alert.service';
 
 @Component({
   selector: 'retister',
-  templateUrl: 'register.component.html'
+  templateUrl: 'register.component.html',
+  styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;

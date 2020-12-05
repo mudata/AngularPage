@@ -8,7 +8,6 @@ body {
     
     margin: 0;
     font-family: Roboto, "Helvetica Neue", sans-serif;
-    background: url('backgroundImg.jpg') no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;
