@@ -86,25 +86,62 @@ router.delete("/:id", (req, res, next) => {
 router.put("/:email",(req, res)=> {
 
     console.log(req.body)
-    // Item.findOneAndUpdate({ _id: req.body.idOfItem }, function (err, doc){
-    //     console.log(doc.comments.push(req.body.text))
-    //     doc.comments.push(req.body.text)
-    //     // doc.name = 'jason bourne';
-    //     // doc.visits.$inc();
-    //     // doc.save();
-    //   });
+
       Item.findOneAndUpdate(
         { _id: req.body.idOfItem },
          { $push: { comments: {text:req.body.text,author:req.params.email} } },
         { upsert: true }, // upsert looks to find a Message with that id and if it doesn't exist creates the Message 
          function(err, data) {
-             // Handle err
+
      });
   });
-//   var reply = {
-//     message: req.body.reply, 
-//     userFrom: req.user._id
-// };
+  router.put("/:id",
+  multer({ storage: storage }).single("image"),
+  (req, res)=> {
+
+    console.log(req.body)
+    const url = req.protocol + "://" + req.get("host");
+    let fileName;
+
+    if (!req.file) {
+
+        console.log('No file')
+        fileName = 'noImage.jpg';
+    } else {
+        fileName = req.file.filename
+    }
+    // const item = new Item({
+    //     _id: mongoose.Types.ObjectId(),
+    //     title: req.body.title,
+    //     disc: req.body.disc,
+    //     category: req.body.category,
+    //     price: req.body.price,
+    //     image: url + "/images/" + fileName
+    // });
+    // console.log(item.disc);
+    // item.save().then(createdItem=> {
+    //     res.status(201).json({
+    //         message: "Item added successfully",
+    //         item: createdItem
+    //     });
+    // });
+
+
+
+//da go dovursha
+    return Item.updateOne({ _id: req.body._id }, {
+        title: req.body.title,
+        disc: req.body.disc,
+        category: req.body.category,
+        price: req.body.price,
+        image: url + "/images/" + fileName
+    }).then((sss)=>{
+console.log(sss)
+    })
+   
+
+  });
+
 
 
 module.exports = router;

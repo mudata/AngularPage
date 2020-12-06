@@ -29,6 +29,7 @@ import { ItemListComponent } from './item-list/item-list.component';
 import { ItemDetailComponent } from './item-detail/item-detail.component';
 import { ProfileComponent } from './profile/profile.component';
 import {MatSelectModule} from '@angular/material/select';
+import { EditComponent } from './edit/edit.component';
 declare module "@angular/core" {
   interface ModuleWithProviders<T = any> {
       ngModule: Type<T>;
@@ -52,6 +53,7 @@ declare module "@angular/core" {
     AboutComponent,
     HomeComponent,
     ProfileComponent,
+    EditComponent,
   ],
   imports: [
     MatListModule,

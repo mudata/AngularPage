@@ -11,10 +11,12 @@ import { ItemAddComponent } from './item-add/item-add.component';
 import { ItemListComponent } from './item-list/item-list.component';
 import { ItemDetailComponent } from './item-detail/item-detail.component';
 import { ProfileComponent } from './profile/profile.component';
+import { EditComponent } from './edit/edit.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'add', component: ItemAddComponent },
+  { path: 'edit/:id', component: EditComponent },
   { path: 'list', component: ItemListComponent },
   { path: 'detail/:id', component: ItemDetailComponent },
   { path: 'contact', component: ContactComponent },

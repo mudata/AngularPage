@@ -12,6 +12,26 @@ export class ItemService {
   loadItemList(): Observable<IItem[]> {
     return this.http.get<IItem[]>(`${apiUrl}/item`);
   }
+  editItem(item,id){
+    console.log(id)
+console.log(item)
+    const ItemDate = new FormData();
+    ItemDate.append("title", item.title);
+    ItemDate.append("disc", item.disc);
+    ItemDate.append("category", item.category);
+    ItemDate.append("price", item.price);
+    ItemDate.append("image", item.image);
+    console.log(ItemDate)
+    let nn={id:id,ItemDate:ItemDate}
+    this.http.put(`${apiUrl}/item/${nn}`, item)
+      .subscribe((res) => {///api/item
+        console.log("post")
+        console.log(res)
+    
+        console.log(this.items)
+        //this.updateItemList();
+      });
+  }
   addItem(item) {
     const ItemDate = new FormData();
     ItemDate.append("title", item.title);
