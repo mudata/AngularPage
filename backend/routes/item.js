@@ -11,10 +11,10 @@ const MIME_TYPE_MAP = {
 };
 
 var storage = multer.diskStorage({
-    destination: function(req, file, cb) {
+    destination: function (req, file, cb) {
         cb(null, "backend/images");
     },
-    filename: function(req, file, cb) {
+    filename: function (req, file, cb) {
         const name = file.originalname
             .toLowerCase()
             .split(" ")
@@ -44,10 +44,11 @@ router.post(
             disc: req.body.disc,
             category: req.body.category,
             price: req.body.price,
+            quantity: 1,
             image: url + "/images/" + fileName
         });
         console.log(item.disc);
-        item.save().then(createdItem=> {
+        item.save().then(createdItem => {
             res.status(201).json({
                 message: "Item added successfully",
                 item: createdItem
@@ -83,65 +84,43 @@ router.delete("/:id", (req, res, next) => {
         res.status(200).json({ message: "Item deleted!" });
     });
 });
-router.put("/:email",(req, res)=> {
+router.put("/:email", multer({ storage: storage }).single("image"), (req, res) => {
 
     console.log(req.body)
+    if (req.body.hasOwnProperty("idOfItem")) {
 
-      Item.findOneAndUpdate(
-        { _id: req.body.idOfItem },
-         { $push: { comments: {text:req.body.text,author:req.params.email} } },
-        { upsert: true }, // upsert looks to find a Message with that id and if it doesn't exist creates the Message 
-         function(err, data) {
+        Item.findOneAndUpdate(
+            { _id: req.body.idOfItem },
+            { $push: { comments: { text: req.body.text, author: req.params.email } } },
+            { upsert: true },
+            function (err, data) {
 
-     });
-  });
-  router.put("/:id",
-  multer({ storage: storage }).single("image"),
-  (req, res)=> {
-
-    console.log(req.body)
-    const url = req.protocol + "://" + req.get("host");
-    let fileName;
-
-    if (!req.file) {
-
-        console.log('No file')
-        fileName = 'noImage.jpg';
-    } else {
-        fileName = req.file.filename
+            });
     }
-    // const item = new Item({
-    //     _id: mongoose.Types.ObjectId(),
-    //     title: req.body.title,
-    //     disc: req.body.disc,
-    //     category: req.body.category,
-    //     price: req.body.price,
-    //     image: url + "/images/" + fileName
-    // });
-    // console.log(item.disc);
-    // item.save().then(createdItem=> {
-    //     res.status(201).json({
-    //         message: "Item added successfully",
-    //         item: createdItem
-    //     });
-    // });
+    else {
+        const url = req.protocol + "://" + req.get("host");
+        let fileName;
+
+        if (!req.file) {
+
+            console.log('No file')
+            fileName = 'noImage.jpg';
+        } else {
+            fileName = req.file.filename
+        }
+
+        return Item.updateOne({ _id: req.body._id }, {
+            title: req.body.title,
+            disc: req.body.disc,
+            category: req.body.category,
+            price: req.body.price,
+            image: url + "/images/" + fileName
+        }).then((sss) => {
+            console.log(sss)
+        })
 
 
-
-//da go dovursha
-    return Item.updateOne({ _id: req.body._id }, {
-        title: req.body.title,
-        disc: req.body.disc,
-        category: req.body.category,
-        price: req.body.price,
-        image: url + "/images/" + fileName
-    }).then((sss)=>{
-console.log(sss)
-    })
-   
-
-  });
-
-
+    }
+});
 
 module.exports = router;

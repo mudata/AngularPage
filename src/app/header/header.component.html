@@ -14,7 +14,7 @@
             <a mat-button *ngIf="authService.isAuthenticated" [routerLink]="'/profile'"> My Profile </a>
             <a mat-button *ngIf="(authService.email==true)" [routerLink]="'/add'" routerLinkActive="active-link"><i
                     class="fa fa-plus-circle fa-2x"></i>&nbsp; &nbsp; Add Item </a>
-            <a mat-button [routerLink]="'/list'"> Menu </a>
+            <a mat-button [routerLink]="'/list'"> Products </a>
             <a mat-button [routerLink]="['/cart']" routerLinkActive="active-link"><i class="fa fa-cart-plus fa-2x"></i>
                 &nbsp; Cart({{cartService.cartSize()}}) </a>
 

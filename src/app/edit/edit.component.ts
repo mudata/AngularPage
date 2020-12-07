@@ -17,6 +17,7 @@ export class EditComponent implements OnInit {
     category: '',
     disc: '',
     image: '',
+    quantity: 1,
     price: null,
   };
   imagePreview: any;
@@ -42,6 +43,7 @@ export class EditComponent implements OnInit {
       title: '',
       category: '',
       disc: '',
+      quantity: 1,
       image: '',
       price: null
     };

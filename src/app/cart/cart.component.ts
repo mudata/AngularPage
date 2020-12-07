@@ -54,4 +54,16 @@ export class CartComponent implements OnInit {
     this.cartService.submitOrder(this.contact);
     this.router.navigate(['/list']);
   }
+  stepUp(quantity,id){
+    console.log(quantity)
+    console.log("up")
+    this.cartService.increaseQuantity(quantity,id);
+    window.location.reload();
+  }
+  stepDown(quantity,id){
+    console.log(quantity)
+    console.log("down")
+    this.cartService.decreaseQuantity(quantity,id);
+    window.location.reload();
+  }
 }

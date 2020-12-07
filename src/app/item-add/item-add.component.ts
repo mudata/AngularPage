@@ -20,6 +20,7 @@ export class ItemAddComponent implements OnInit {
     title: '',
     category: '',
     disc: '',
+    quantity:1,
     image: '',
     price: null,
   };
@@ -41,6 +42,7 @@ export class ItemAddComponent implements OnInit {
       title: '',
       category: '',
       disc: '',
+      quantity:1,
       image: '',
       price: null
     };

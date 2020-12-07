@@ -12,9 +12,7 @@ export class HeaderComponent implements OnInit {
   
     
   ngOnInit(): void {
-    console.log(this.authService)
-//     this.lo=localStorage.getItem("email");
-// console.log(this.lo)
+
   }
 
 }

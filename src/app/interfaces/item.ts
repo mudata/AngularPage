@@ -4,5 +4,6 @@ export interface IItem {
   category: string;
   disc: string;
   image: any;
+  quantity:any;
   price: number;
 }

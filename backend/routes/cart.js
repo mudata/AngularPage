@@ -11,9 +11,19 @@ router.post("", (req, res, next) => {
     Item.findById(req.body._id).then(Item2 => {
         if (Item2) {
             console.log(Item2.id);
-            Cart.push(Item2);
-            res.status(200).json({ message: "Item added to cart", item: Item2 });
-            console.log(res)
+            const find=Cart.find(a=>a._id==Item2.id)
+            if(find){
+                
+                find.quantity=Number(find.quantity)+1;
+                console.log(find);
+                console.log(Cart)
+            }
+            else{
+                Cart.push(Item2);
+                res.status(200).json({ message: "Item added to cart", item: Item2 });
+                console.log(res)
+            }
+           
         } else {
             res.status(404).json({ message: "Item not found!" });
         }
@@ -60,6 +70,27 @@ router.delete("/:id", (req, res, next) => {
         Items: newarr
     });
 
+});
+router.put("", (req, res) => {
+    const find=Cart.find(a=>a._id==req.body.id)
+    if(req.body.hasOwnProperty("increase")){
+       
+        if(find){
+            
+            find.quantity=Number(find.quantity)+1;
+            console.log(find);
+            console.log(Cart)
+        }
+    }
+    else{
+        find.quantity=Number(find.quantity)-1;
+        // if(find.quantity="0"){
+        //     find={};
+        // }
+    }
+    
+    
+  
 });
 
 module.exports = router;

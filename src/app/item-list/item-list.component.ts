@@ -14,6 +14,7 @@ import { ClassGetter } from '@angular/compiler/src/output/output_ast';
 import { compileNgModule } from '@angular/compiler';
 import { FormControl, FormGroup } from '@angular/forms';
 import { HttpClient, HttpParams } from '@angular/common/http';
+import { AuthService } from '../services/auth.service';
 
 const apiUrl = environment.apiUrl;
 
@@ -28,7 +29,7 @@ export class ItemListComponent implements OnInit {
   results = [];
   selected: string = '';
   // @ViewChild('movieSearchInput', { static: true }) movieSearchInput: ElementRef;
-  constructor(public cartService: CartService, private itemService: ItemService, public http: HttpClient) { }
+  constructor(public cartService: CartService, private itemService: ItemService, public http: HttpClient,public authService: AuthService) { }
   categories;
   b: false;
   search: FormGroup;

@@ -14,10 +14,8 @@ export class CartService {
 
   addToCart(item) {
     this.http.post<{ message: string, item: IItem }>('http://localhost:3000/api/cart', item).subscribe((res) => {
-      console.log(res);
       this.updateCartList();
     });
-    console.log(item);
   }
 
   cartSize() {
@@ -25,19 +23,16 @@ export class CartService {
   }
 
   deleteFromCart(item) {
-    console.log(item)//, item
     this.http.delete(`http://localhost:3000/api/cart/${item._id}`).subscribe((res) => {
       this.getCart().subscribe((item: IItem[]) => {
         this.items = item['Items'];
-        console.log(this.items);
         window.location.reload();
-
       });
 
     });
   }
   calculateTotal() {
-    return this.items.reduce((sum, item) => sum + item.price, 0);
+    return this.items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
   }
 
   getCart() {
@@ -47,9 +42,6 @@ export class CartService {
   updateCartList() {
     this.getCart().subscribe((item: IItem[]) => {
       this.items = item['Items'];
-      console.log(this.items);
-
-      //return this.items;
     });
   }
 
@@ -58,11 +50,31 @@ export class CartService {
     console.log("SEND ORDER" + orderData);
     return this.http.post('http://localhost:3000/api/order', orderData)
       .subscribe((res) => {
-        this.http.delete(`http://localhost:3000/api/cart/all`).subscribe(()=>{
-         
+        this.http.delete(`http://localhost:3000/api/cart/all`).subscribe(() => {
+
         })
         console.log("SEND ORDER" + res);
       });
   }
+  increaseQuantity(quantity,id) {
+    this.http.put('http://localhost:3000/api/cart', {quantity,id,increase:""}).subscribe((res) => {
+      this.updateCartList();
+    });
+  }
+  decreaseQuantity(quantity,id){
+    if(quantity=="1"){
+      this.http.delete(`http://localhost:3000/api/cart/${id}`).subscribe((res) => {
+        this.getCart().subscribe((item: IItem[]) => {
+          this.items = item['Items'];
+          window.location.reload();
+        });
+  
+      });
+    }
+    this.http.put('http://localhost:3000/api/cart', {quantity,id,decrease:""}).subscribe((res) => {
+      this.updateCartList();
+    });
+  }
+
 }
 

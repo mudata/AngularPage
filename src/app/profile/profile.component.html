@@ -32,13 +32,14 @@
                                         <th></th>
                                         <th>Name</th>
                                         <th>Price</th>
+                                        <th>Quantity</th>
                                         <th></th>
                                     </tr>
                                     <tr *ngFor="let item of this.items" class="card-col col-12 col-lg-4">
                                         <td><img class="feature-image" src={{item.image}}></td>
                                         <td>{{item.title}}</td>
                                         <td>{{item.price | currency:'USD'}} </td>
-                                     
+                                        <td>{{item.quantity}}Pcs  </td>
                                     </tr>
                                     <tr>
                                         <th></th>
