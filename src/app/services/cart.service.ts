@@ -3,18 +3,26 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { IItem } from "../interfaces/item";
 import { Router } from '@angular/router';
+import { AlertService } from '../_alert';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
-
+  options = {
+    autoClose: true,
+  };
   items: IItem[] = [];
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(
+    private http: HttpClient,
+     private router: Router,
+     public alertService: AlertService
+     ) { }
 
   addToCart(item) {
     this.http.post<{ message: string, item: IItem }>('http://localhost:3000/api/cart', item).subscribe((res) => {
-      this.updateCartList();
+      this.alertService.success('Item Added To Cart!!', this.options);  
+    this.updateCartList();
     });
   }
 
@@ -26,7 +34,8 @@ export class CartService {
     this.http.delete(`http://localhost:3000/api/cart/${item._id}`).subscribe((res) => {
       this.getCart().subscribe((item: IItem[]) => {
         this.items = item['Items'];
-        window.location.reload();
+        this.alertService.success('Item Delete From Cart!!', this.options);  
+       // window.location.reload();
       });
 
     });
@@ -47,32 +56,38 @@ export class CartService {
 
   submitOrder(contact) {
     const orderData = { "contact": contact, "items": this.items };
-    console.log("SEND ORDER" + orderData);
-    return this.http.post('http://localhost:3000/api/order', orderData)
-      .subscribe((res) => {
-        this.http.delete(`http://localhost:3000/api/cart/all`).subscribe(() => {
-
+    
+    this.http.post('http://localhost:3000/api/order', orderData)
+      .subscribe(() => {
+        console.log("SEND ORDER" + orderData);
+      })
+      
+      this.http.delete(`http://localhost:3000/api/cart/all`).subscribe(() => {
+        this.alertService.success('Submit Order!!', this.options);
+        this.alertService.success('Delete Cart!!', this.options)
+        this.updateCartList();
         })
-        console.log("SEND ORDER" + res);
-      });
   }
-  increaseQuantity(quantity,id) {
-    this.http.put('http://localhost:3000/api/cart', {quantity,id,increase:""}).subscribe((res) => {
-      this.updateCartList();
+  increaseQuantity(quantity, id) {
+    this.alertService.success('Increase Quantity!!', this.options)
+    this.http.put('http://localhost:3000/api/cart', { quantity, id, increase: "" }).subscribe((res) => {
+      // this.updateCartList();
     });
   }
-  decreaseQuantity(quantity,id){
-    if(quantity=="1"){
+  decreaseQuantity(quantity, id) {
+    
+    if (quantity == "1") {
       this.http.delete(`http://localhost:3000/api/cart/${id}`).subscribe((res) => {
         this.getCart().subscribe((item: IItem[]) => {
           this.items = item['Items'];
-          window.location.reload();
+          // window.location.reload();
         });
-  
+return;
       });
     }
-    this.http.put('http://localhost:3000/api/cart', {quantity,id,decrease:""}).subscribe((res) => {
-      this.updateCartList();
+    this.alertService.success('Decrease Quantity!!', this.options)
+    this.http.put('http://localhost:3000/api/cart', { quantity, id, decrease: "" }).subscribe((res) => {
+      // this.updateCartList();
     });
   }
 

@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { IItem } from '../interfaces/item';
 import { Item } from '../models/item';
 import { ItemService } from '../services/item.service';
+import { AlertService } from '../_alert';
 
 @Component({
   selector: 'app-edit',
@@ -11,7 +12,7 @@ import { ItemService } from '../services/item.service';
   styleUrls: ['./edit.component.css']
 })
 export class EditComponent implements OnInit {
-  id:any
+  id: any
   item: IItem = {
     title: '',
     category: '',
@@ -23,8 +24,11 @@ export class EditComponent implements OnInit {
   imagePreview: any;
   image;
   itemId;
+  options = {
+    autoClose: true,
+  };
 
-  constructor(private http: HttpClient, public itemService: ItemService,private route: ActivatedRoute, private router: Router) { }
+  constructor(private http: HttpClient, public itemService: ItemService, private route: ActivatedRoute, public alertService: AlertService, private router: Router) { }
 
   ngOnInit(): void {
     this.itemId = this.route.params.subscribe(params => {
@@ -32,13 +36,13 @@ export class EditComponent implements OnInit {
 
         this.item = item;
         console.log(this.item);
-        this.id=this.item._id;
+        this.id = this.item._id;
       });
     });
   }
   editItem() {
 
-    this.itemService.editItem(this.item,this.id);
+    this.itemService.editItem(this.item, this.id);
     this.item = {
       title: '',
       category: '',
@@ -47,8 +51,8 @@ export class EditComponent implements OnInit {
       image: '',
       price: null
     };
-    this.router.navigate(['/list']);
-    
+    this.alertService.success('Edited Item!!', this.options)
+    // this.router.navigate(['/list']);
   }
   onImagePicked(event) {
     const file = event.target.files[0];

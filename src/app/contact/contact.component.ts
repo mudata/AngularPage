@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { Router } from '@angular/router';
+import { AlertService } from '../_alert';
+import { ContactService } from '../services/contact.service';
 
 @Component({
   selector: 'app-contact',
@@ -10,9 +12,16 @@ import { Router } from '@angular/router';
 })
 export class ContactComponent implements OnInit {
 
-
+  options = {
+    autoClose: true,
+  };
   mail = { to: "46179r@unibit.bg", from: "", subject: "", text: "", name: "", tel: "", sendtype:"" }
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(
+    private http: HttpClient,
+     private router: Router,
+     public alertService: AlertService,
+     public contactService:ContactService
+     ) { }
 
   ngOnInit() {
   }
@@ -20,11 +29,9 @@ export class ContactComponent implements OnInit {
 
   sendMail() {
     console.log(this.mail);
-    this.http.post('http://localhost:3000/api/email', this.mail)
-      .subscribe((res) => {
+    this.contactService.sendEmail(this.mail)
 
-        console.log(res);
-      });
+      this.alertService.success('Send Email!!', this.options);
   }
 
 }

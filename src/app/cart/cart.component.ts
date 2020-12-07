@@ -13,7 +13,9 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
-
+  options = {
+    autoClose: true,
+  };
   contact = { name: "", tel: "", email:"" };
   constructor( 
     public cartService: CartService,

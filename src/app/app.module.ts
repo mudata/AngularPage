@@ -1,11 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { ErrorHandler, NgModule } from '@angular/core';
 import { CKEditorModule } from 'ckeditor4-angular';
 import {FormsModule} from '@angular/forms';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.modules';
-import {  MatInputModule, MatCardModule, MatButtonModule, MatToolbarModule, MatExpansionModule, MatRadioModule, MatIconModule, MatTableModule, MatGridListModule, MatListModule, MatFormFieldModule, MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material';
+import {  MatInputModule, MatCardModule, MatButtonModule, MatToolbarModule, MatExpansionModule, MatRadioModule, MatIconModule, MatTableModule, MatGridListModule, MatListModule, MatFormFieldModule, MAT_FORM_FIELD_DEFAULT_OPTIONS, MatSnackBarModule } from '@angular/material';
 import {MatBadgeModule} from '@angular/material/badge';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 // import { ToastrModule } from 'ngx-toastr';
@@ -30,6 +30,7 @@ import { ItemDetailComponent } from './item-detail/item-detail.component';
 import { ProfileComponent } from './profile/profile.component';
 import {MatSelectModule} from '@angular/material/select';
 import { EditComponent } from './edit/edit.component';
+import { AlertModule } from './_alert';
 declare module "@angular/core" {
   interface ModuleWithProviders<T = any> {
       ngModule: Type<T>;
@@ -84,7 +85,8 @@ declare module "@angular/core" {
     MatButtonModule, 
     MatCardModule, 
     MatToolbarModule, 
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AlertModule
   ],
   providers: [
     ItemService,

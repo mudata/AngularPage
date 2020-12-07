@@ -46,7 +46,7 @@ router.delete("/:id", (req, res, next) => {
 
     newarr = [];
     if(req.params.id=="all"){
-        
+        Cart=[];
     }else{
         cartx.forEach(element => {
             console.log(element._doc._id.toString());

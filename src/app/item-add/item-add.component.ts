@@ -35,8 +35,6 @@ export class ItemAddComponent implements OnInit {
   }
 
   addItem() {
-   
-  
     this.itemService.addItem(this.item);
     this.item = {
       title: '',

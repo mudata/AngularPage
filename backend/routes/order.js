@@ -14,11 +14,11 @@ router.post("", (req, res, next) => {
     
     // console.log(req.body);
     // console.log(req.body._id);
-     while(Cart.length > 0) {
-         Cart.pop();
-        
-    }
-// console.log(req.body.orderData)
+    //  Cart=[];
+    //  console.log(Cart)
+    //  while (Cart.length>0) {
+    //    Cart.pop();
+    //  }
     var mailOptions = {
         from: `${req.body.contact.email}`,
         to: 'mudata19191@gmail.com',

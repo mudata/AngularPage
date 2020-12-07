@@ -6,6 +6,8 @@ import { CartService } from '../services/cart.service';
 import { Item } from '../models/item';
 import { FormGroup } from '@angular/forms';
 import { environment } from 'src/environments/environment';
+import { CommentsService } from '../services/comments.service';
+import { AlertService } from '../_alert';
 const apiUrl = environment.apiUrl;
 @Component({
   selector: 'app-item-detail',
@@ -13,12 +15,22 @@ const apiUrl = environment.apiUrl;
   styleUrls: ['./item-detail.component.css']
 })
 export class ItemDetailComponent implements OnInit {
-
+  options = {
+    autoClose: true,
+  };
   item: Item;
   itemId;
   commentform: FormGroup;
   comment = { newComment: "" }
-  constructor(private http: HttpClient, public itemservice: ItemService, private router: Router, private route: ActivatedRoute, public cartService: CartService) { }
+  constructor(
+    private http: HttpClient,
+    public itemservice: ItemService,
+    private router: Router,
+    private route: ActivatedRoute,
+    public cartService: CartService,
+    public commentService: CommentsService,
+     public alertService: AlertService
+  ) { }
 
   ngOnInit() {
     this.itemId = this.route.params.subscribe(params => {
@@ -35,24 +47,19 @@ export class ItemDetailComponent implements OnInit {
     this.cartService.addToCart(item);
   }
   commentIdea(item) {
-    console.log(this.comment , item._id);
-    let idOfItem=item._id;
+    console.log(this.comment, item._id);
+    let idOfItem = item._id;
     let text = this.comment.newComment;
-    let email=localStorage.getItem("email")
-    let data={idOfItem,text};
-    this.http.put(`${apiUrl}/item/${email}`, data)
-      .subscribe((res) => {///api/item
+    let email = localStorage.getItem("email")
+    let data = { idOfItem, text };
+    this.commentService.addComment(email, data);
+    this.alertService.success('Add Comment!!', this.options);
+    this.itemservice.getItem(idOfItem).subscribe((item: Item) => {
 
-      });
-  //   Item.updateOne({age:{$gte:5}},  
-  //     {name:"ABCD"}, function (err, docs) { 
-  //     if (err){ 
-  //         console.log(err) 
-  //     } 
-  //     else{ 
-  //         console.log("Updated Docs : ", docs); 
-  //     } 
-  // }); 
+      this.item = item;
+      console.log(this.item);
+
+    });
   }
 
 }

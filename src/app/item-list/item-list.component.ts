@@ -40,22 +40,28 @@ export class ItemListComponent implements OnInit {
     this.itemService.loadItemList().subscribe((items2) => {
       this.items = items2['Items'];
       const map1 = items2['Items'].map(x => x.category);
-      //console.log(map1)
       this.categories = [...new Set(map1)];
       this.items.sort((a, b) => {
-        return a.title.localeCompare(b.title);
-      })
-      //console.log(this.categories)
-    })
-
-
+        return (a.title).localeCompare(b.title);
+      });
+    });
 
   }
 
   deleteItem(item) {
     this.itemService.deleteItem(item).subscribe(() => {
-      this.itemService.updateItemList();
+      
     });
+    this.itemService.loadItemList().subscribe((items2) => {
+      this.items = items2['Items'];
+      const map1 = items2['Items'].map(x => x.category);
+      //console.log(map1)
+      this.categories = [...new Set(map1)];
+      this.items.sort((a, b) => {
+        return (a.title).localeCompare(b.title);
+      })
+      //console.log(this.categories)
+    })
   }
 
   addToCart(item) {
@@ -138,7 +144,7 @@ export class ItemListComponent implements OnInit {
     if (this.selected == "ime") {
 
       this.items.sort((a, b) => {
-        return a.title.localeCompare(b.title);
+        return (a.title).localeCompare(b.title);
       });
       // console.log(this.items);
     }

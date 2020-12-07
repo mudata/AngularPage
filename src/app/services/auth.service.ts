@@ -1,17 +1,23 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
+import { AlertService } from '../_alert';
 
 @Injectable()
 export class AuthService {
-    
+    options = {
+        autoClose: true,
+    };
     messages = [];
     path = environment.path + '/auth';
     TOKEN_KEY = 'token';
     emailName="email";
     name="name"
     description="description"
-    constructor ( private http: HttpClient){}
+    constructor ( 
+        private http: HttpClient,
+        public alertService: AlertService
+        ){}
         
     get token(){
         return localStorage.getItem(this.TOKEN_KEY);
@@ -30,11 +36,13 @@ export class AuthService {
     
     logout(){
         localStorage.clear();
+        this.alertService.success('Logged out!!', this.options);
     }
         
     registerUser(registerData){
         this.http.post<any>(this.path + '/register', registerData).subscribe(res => {
             console.log(res)
+            this.alertService.success('Success Register!!', this.options);
             this.saveToken(res.token);
             this.saveData(registerData);
         });
@@ -42,7 +50,9 @@ export class AuthService {
     }
     
     loginUser(loginData){
+
         this.http.post<any>(this.path + '/login', loginData).subscribe(res => {
+            this.alertService.success('Logged In!!', this.options);
             this.saveToken(res.token);
             this.saveData(loginData);
         });
