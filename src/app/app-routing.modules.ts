@@ -15,6 +15,7 @@ import { EditComponent } from './edit/edit.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
+  { path: 'AngularPage', component: HomeComponent },
   { path: 'add', component: ItemAddComponent },
   { path: 'edit/:id', component: EditComponent },
   { path: 'list', component: ItemListComponent },
