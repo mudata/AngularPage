@@ -43,6 +43,7 @@ export class EditComponent implements OnInit {
   editItem() {
 
     this.itemService.editItem(this.item, this.id);
+    this.http.delete(`http://localhost:3000/api/item/${this.id}`);
     this.item = {
       title: '',
       category: '',
@@ -58,6 +59,7 @@ export class EditComponent implements OnInit {
     const file = event.target.files[0];
     console.log(file);
     this.item.image = file;
+    console.log(file)
     const reader = new FileReader();
     reader.onload = () => {
       this.imagePreview = reader.result;

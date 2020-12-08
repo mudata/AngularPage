@@ -8,6 +8,7 @@ const postSchema = mongoose.Schema({
     price: { type: Number, required: true },
     image: { type: String, required: true },
     quantity: { type: String},
+    delete: { type: String},
     comments: []
 });
 

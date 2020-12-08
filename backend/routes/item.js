@@ -38,6 +38,14 @@ router.post(
         } else {
             fileName = req.file.filename
         }
+        if(req.body.delete){
+            Item.deleteOne({ _id: req.body.delete }).then(result => {
+                console.log(result);
+                res.status(200).json({ message: "Item deleted!" });
+            });
+        }
+        console.log(req.body)
+console.log(fileName)
         const item = new Item({
             _id: mongoose.Types.ObjectId(),
             title: req.body.title,
@@ -84,7 +92,9 @@ router.delete("/:id", (req, res, next) => {
         res.status(200).json({ message: "Item deleted!" });
     });
 });
-router.put("/:email", multer({ storage: storage }).single("image"), (req, res) => {
+router.put("/:email",
+//  multer({ storage: storage }).single("image"),
+  (req, res, next) => {
 
     console.log(req.body)
     if (req.body.hasOwnProperty("idOfItem")) {
@@ -101,19 +111,22 @@ router.put("/:email", multer({ storage: storage }).single("image"), (req, res) =
         const url = req.protocol + "://" + req.get("host");
         let fileName;
 
-        if (!req.file) {
+        // if (!req.file) {
 
-            console.log('No file')
-            fileName = 'noImage.jpg';
-        } else {
-            fileName = req.file.filename
-        }
-
+        //     console.log('No file')
+        //     fileName = 'noImage.jpg';
+        // } else {
+            fileName = req.body.image
+           
+        // }
+console.log(req.body)
+console.log(fileName)
         return Item.updateOne({ _id: req.body._id }, {
             title: req.body.title,
             disc: req.body.disc,
             category: req.body.category,
             price: req.body.price,
+            quantity: 1,
             image: url + "/images/" + fileName
         }).then((sss) => {
             console.log(sss)

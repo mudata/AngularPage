@@ -48,13 +48,13 @@
     </button>
 
 
-        <div class="">
-            <button mat-stroked-button color="accent" type="button" (click)="filePicker.click()">
-        Pick Image
-      </button>
-      <!-- #filePicker ([ngModel])="fileToUpload" -->
-            <input class="d-none" type="file" name="postImage" file-model = "myFile" #filePicker (change)="onImagePicked($event)" />
-        </div>
+    <div class="">
+        <button mat-stroked-button color="accent" type="button" (click)="filePicker.click()">
+    Pick Image
+  </button>
+  <!-- #filePicker ([ngModel])="fileToUpload" -->
+        <input class="d-none" type="file" name="postImage" file-model = "myFile" #filePicker (change)="onImagePicked($event)" />
+    </div>
     </form>
 </mat-card>
 

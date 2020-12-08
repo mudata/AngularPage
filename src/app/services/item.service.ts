@@ -28,15 +28,22 @@ export class ItemService {
     ItemDate.append("category", item.category);
     ItemDate.append("price", item.price);
     ItemDate.append("image", item.image);
-    
-    console.log(ItemDate)
+    ItemDate.append("delete", id);
+    // item.image=item.image.name
+    console.log(item.image.name)
     let nn = { id: id, ItemDate: ItemDate }
-    this.http.put(`${apiUrl}/item/${nn}`, item)
-      .subscribe(() => {
+    // this.http.put(`${apiUrl}/item/${nn}`, item)
+    //   .subscribe(() => {
 
-        this.alertService.info('Edited Item!!', this.options);
+    //     this.alertService.info('Edited Item!!', this.options);
      
-      });
+    //   });
+    this.http.post<{ message: string, item: IItem }>(`${apiUrl}/item`, ItemDate)
+    .subscribe((res) => {///api/item
+      const resdish = res.item;
+      this.items.push(resdish);
+     
+    });
       this.router.navigate(['/list'])
   }
   addItem(item) {
@@ -46,12 +53,14 @@ export class ItemService {
     ItemDate.append("category", item.category);
     ItemDate.append("price", item.price);
     ItemDate.append("image", item.image);
-    
+    console.log(item.image)
     this.http.post<{ message: string, item: IItem }>(`${apiUrl}/item`, ItemDate)
-      .subscribe((res) => {///api/item
+      .subscribe((res) => {
         const resdish = res.item;
         this.items.push(resdish);
+        
         this.alertService.success('Added Item!!', this.options)
+       this.http.delete(`http://localhost:3000/api/item/${item._id}`);
       });
   }
   getItems() {
