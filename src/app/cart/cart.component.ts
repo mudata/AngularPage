@@ -39,7 +39,13 @@ export class CartComponent implements OnInit {
 
   deleteItem(item){
     console.log(item)
-    this.cartService.deleteFromCart(item);
+      this.cartService.deleteFromCart(item);
+    this.cartService.getCart().subscribe((items2) => {
+
+      this.items = items2['Items'];
+      //console.log(this.items)
+    });
+    
   }
 
   addToCart(item) {

@@ -35,7 +35,7 @@
                 <!-- <p *ngIf="!comments$?.length" class="comments comment">No comments yet :(</p> -->
                 <ul class="comments mb-5 pb-5">
                     <ng-container *ngFor="let comment of item.comments">
-                        <li class="comment">{{comment.author}}:{{comment.text}}</li>
+                        <li class="comment">{{comment.author}} написа: {{comment.text}}</li>
                     </ng-container>
                 </ul>
             </div>

@@ -32,13 +32,11 @@ export class CartService {
 
   deleteFromCart(item) {
     this.http.delete(`http://localhost:3000/api/cart/${item._id}`).subscribe((res) => {
-      this.getCart().subscribe((item: IItem[]) => {
-        this.items = item['Items'];
-        this.alertService.success('Item Delete From Cart!!', this.options);  
-       // window.location.reload();
-      });
-
+      this.updateCartList()
     });
+    
+      this.alertService.success('Item Delete From Cart!!', this.options);  
+  
   }
   calculateTotal() {
     return this.items.reduce((sum, item) => sum + (item.price * item.quantity), 0);

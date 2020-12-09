@@ -37,7 +37,6 @@ export class ItemDetailComponent implements OnInit {
       this.itemservice.getItem(params['id']).subscribe((item: Item) => {
 
         this.item = item;
-        console.log(this.item);
 
       });
     });
@@ -50,14 +49,13 @@ export class ItemDetailComponent implements OnInit {
     console.log(this.comment, item._id);
     let idOfItem = item._id;
     let text = this.comment.newComment;
-    let email = localStorage.getItem("email")
+    let email = localStorage.getItem("name")
     let data = { idOfItem, text };
     this.commentService.addComment(email, data);
     this.alertService.success('Add Comment!!', this.options);
     this.itemservice.getItem(idOfItem).subscribe((item: Item) => {
 
       this.item = item;
-      console.log(this.item);
 
     });
   }
