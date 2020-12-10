@@ -30,7 +30,6 @@ export class ContactComponent implements OnInit {
   sendMail() {
     console.log(this.mail);
     this.contactService.sendEmail(this.mail)
-
       this.alertService.success('Send Email!!', this.options);
   }
 

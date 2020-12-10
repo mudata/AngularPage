@@ -41,10 +41,9 @@ export class AuthService {
         
     registerUser(registerData){
         this.http.post<any>(this.path + '/register', registerData).subscribe(res => {
-            console.log(res)
-            this.alertService.success('Success Register!!', this.options);
             this.saveToken(res.token);
             this.saveData(registerData);
+            this.alertService.success('Success Register!!', this.options);
         });
         
     }

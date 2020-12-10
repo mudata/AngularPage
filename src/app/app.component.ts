@@ -11,7 +11,6 @@ import { Item } from './models/item';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit , OnChanges {
-  title = 'restaurant';
 
   constructor(public cartService: CartService,public router:Router) { }
 

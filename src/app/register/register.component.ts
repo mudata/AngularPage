@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AlertService } from '../services/alert.service';
 
 @Component({
   selector: 'retister',
@@ -25,16 +24,11 @@ export class RegisterComponent implements OnInit {
     public authService: AuthService,
       private router: Router,
       private formBuilder: FormBuilder,
-      private alertService: AlertService
       ) { }
 
   post() {
     this.submitted = true;
 
-        // reset alerts on submit
-        this.alertService.clear();
-
-        // stop here if form is invalid
         if (this.registerForm.invalid) {
             return;
         }

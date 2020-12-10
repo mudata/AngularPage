@@ -1,17 +1,8 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { CartService } from '../services/cart.service';
-
-import { Subject, interval, of, fromEvent, pipe } from "rxjs";
-import { ajax } from 'rxjs/ajax';
-import { AjaxResponse } from 'rxjs/ajax'
-import { map, debounceTime, switchMap, mergeMap, timeout } from "rxjs/operators";
 import { IItem } from "../interfaces/item";
 import { ItemService } from '../services/item.service';
 import { environment } from 'src/environments/environment';
-import { Router, Routes } from '@angular/router';
-import { HomeComponent } from '../home/home.component';
-import { ClassGetter } from '@angular/compiler/src/output/output_ast';
-import { compileNgModule } from '@angular/compiler';
 import { FormControl, FormGroup } from '@angular/forms';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { AuthService } from '../services/auth.service';
@@ -28,8 +19,12 @@ const apiUrl = environment.apiUrl;
 export class ItemListComponent implements OnInit {
   results = [];
   selected: string = '';
-  // @ViewChild('movieSearchInput', { static: true }) movieSearchInput: ElementRef;
-  constructor(public cartService: CartService, private itemService: ItemService, public http: HttpClient,public authService: AuthService) { }
+  constructor(
+    public cartService: CartService,
+     private itemService: ItemService,
+      public http: HttpClient,
+      public authService: AuthService
+      ) { }
   categories;
   b: false;
   search: FormGroup;

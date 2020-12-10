@@ -29,15 +29,8 @@ export class ItemService {
     ItemDate.append("price", item.price);
     ItemDate.append("image", item.image);
     ItemDate.append("delete", id);
-    // item.image=item.image.name
-    console.log(item.image.name)
-    let nn = { id: id, ItemDate: ItemDate }
-    // this.http.put(`${apiUrl}/item/${nn}`, item)
-    //   .subscribe(() => {
 
-    //     this.alertService.info('Edited Item!!', this.options);
-     
-    //   });
+    let nn = { id: id, ItemDate: ItemDate }
     this.http.post<{ message: string, item: IItem }>(`${apiUrl}/item`, ItemDate)
     .subscribe((res) => {///api/item
       const resdish = res.item;
