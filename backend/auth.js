@@ -49,12 +49,23 @@ router.post('/login', async (req, res) => {
             createSendToken(res, user);
         });
 });
-
+router.get('/login', async (req, res) => {
+    console.log(req.body)
+    const loginData = req.body;
+    const user = await User.findOne({
+        email: loginData.email
+    });
+    res.status(200).json(user);
+    // createSendToken(res, user);
+    // return user;
+});
 function createSendToken(res, user){
     const payload = { sub: user._id };
     const token = jwt.encode(payload, '123');
-    res.status(200).send({token});
+    res.status(200).send({user,token});
+    // res.status(200).send({token});
 }
+
 
 const auth = {
     router,

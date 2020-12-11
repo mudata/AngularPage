@@ -44,17 +44,19 @@ export class AuthService {
             this.saveToken(res.token);
             this.saveData(registerData);
             this.alertService.success('Success Register!!', this.options);
-        });
+        })
         
     }
     
     loginUser(loginData){
+    this.http.post<any>(this.path + '/login', loginData).subscribe(res => {
+        console.log(res)
+        this.alertService.success('Logged In!!', this.options);
+        this.saveToken(res.token);
+        this.saveData(res.user);
+    });
 
-        this.http.post<any>(this.path + '/login', loginData).subscribe(res => {
-            this.alertService.success('Logged In!!', this.options);
-            this.saveToken(res.token);
-            this.saveData(loginData);
-        });
+        
     }
     
     saveToken(token){

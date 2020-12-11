@@ -37,7 +37,7 @@ export class ItemDetailComponent implements OnInit {
       this.itemservice.getItem(params['id']).subscribe((item: Item) => {
 
         this.item = item;
-
+console.log(item)
       });
     });
   }

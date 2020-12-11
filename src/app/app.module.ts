@@ -8,14 +8,12 @@ import { AppRoutingModule } from './app-routing.modules';
 import {  MatInputModule, MatCardModule, MatButtonModule, MatToolbarModule, MatExpansionModule, MatRadioModule, MatIconModule, MatTableModule, MatGridListModule, MatListModule, MatFormFieldModule, MAT_FORM_FIELD_DEFAULT_OPTIONS, MatSnackBarModule } from '@angular/material';
 import {MatBadgeModule} from '@angular/material/badge';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-// import { ToastrModule } from 'ngx-toastr';
 import { ContactComponent } from './contact/contact.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { CartComponent } from './cart/cart.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { SearchComponent } from './search/search.component';
 import { ItemService } from './services/item.service';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
@@ -48,7 +46,6 @@ declare module "@angular/core" {
     CartComponent,
     LoginComponent,
     RegisterComponent,
-    SearchComponent,
     HeaderComponent,
     FooterComponent,
     AboutComponent,
@@ -70,7 +67,6 @@ declare module "@angular/core" {
     MatExpansionModule,
     FormsModule,
     HttpClientModule,
-    // ToastrModule.forRoot(),
     MatBadgeModule,
     CKEditorModule,
     MatIconModule,
@@ -98,10 +94,7 @@ declare module "@angular/core" {
       }
   ],
   bootstrap: [
-    // HeaderComponent,
     AppComponent,
-    // FooterComponent
   ],
-  // schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }
