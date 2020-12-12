@@ -1,5 +1,6 @@
 # AngularPage
-AngularPage
+AngularPage with authentication Login and Register and Admin privilege
+
 # Install packages
 npm i
 # Start Server 
