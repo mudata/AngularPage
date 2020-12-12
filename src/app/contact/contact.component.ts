@@ -29,6 +29,9 @@ export class ContactComponent implements OnInit {
 
   sendMail() {
     console.log(this.mail);
+    if(this.mail.from==""||this.mail.subject==""||this.mail.text==""||this.mail.name==""){
+return;
+    }
     this.contactService.sendEmail(this.mail)
       this.alertService.success('Send Email!!', this.options);
   }

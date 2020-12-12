@@ -4,65 +4,56 @@ const jwt = require('jwt-simple');
 const express = require('express');
 const router = express.Router();
 
-router.post('/register',async (req, res) => {
-        const userData = req.body;
-        console.log(userData)
-        const user2 =await  User.findOne({
-            email: userData.email
-        });
-       
-        if(user2){
-            console.log(user2)
-            return;
-        }
-        const user = new User(userData);
-        user.save((err, newUser) =>{
-            if(err){
-                return res.status(500).send({
-                    message: 'Error saving user'
-                });
-            }
-            createSendToken(res, newUser);
-        });
-});
-    
-router.post('/login', async (req, res) => {
-        const loginData = req.body;
-        const user = await User.findOne({
-            email: loginData.email
-        });
-        
-        if(!user){ 
-            return res.status(401).send({
-                message: 'Email or Password invalid'
+router.post('/register', async (req, res) => {
+    const userData = req.body;
+    console.log(userData)
+    const user2 = await User.findOne({
+        email: userData.email
+    });
+
+    if (user2) {
+        console.log(user2)
+        return;
+    }
+    const user = new User(userData);
+    user.save((err, newUser) => {
+        if (err) {
+            return res.status(500).send({
+                message: 'Error saving user'
             });
         }
-        
-        bcrypt.compare(loginData.password, user.password, (err, isMatch) => {
-            
-            if(!isMatch){
-                return res.status(401).send({
-                    message: 'Email or Password invalid'
-                });
-            }
-            
-            createSendToken(res, user);
-        });
+        createSendToken(res, newUser);
+    });
 });
-router.get('/login', async (req, res) => {
-    console.log(req.body)
+
+router.post('/login', async (req, res) => {
     const loginData = req.body;
     const user = await User.findOne({
         email: loginData.email
     });
-    res.status(200).json(user);
-    // createSendToken(res, user);
-    // return user;
+
+    if (!user) {
+        return res.status(401).send({
+            message: 'Email or Password invalid'
+        });
+    }
+
+    bcrypt.compare(loginData.password, user.password, (err, isMatch) => {
+
+        if (!isMatch) {
+            return res.status(401).send({
+                message: 'Email or Password invalid'
+            });
+        }
+
+        createSendToken(res, user);
+    });
 });
-function createSendToken(res, user){
+
+function createSendToken(res, user) {
     const payload = { sub: user._id };
     const token = jwt.encode(payload, '123');
-    res.status(200).send({user,token});
+    res.status(200).send({ user, token });
     // res.status(200).send({token});
 }
 
@@ -70,18 +61,18 @@ function createSendToken(res, user){
 const auth = {
     router,
     checkAuthenticated: (req, res, next) => {
-        if(!req.header('authorization')){
-            return res.status(401).send({message: 'Unauthorized. Missing Auth Header'});
+        if (!req.header('authorization')) {
+            return res.status(401).send({ message: 'Unauthorized. Missing Auth Header' });
         }
-        
+
         const token = req.header('authorization').split(' ')[1];
-        
+
         const payload = jwt.decode(token, '123');
-        
-        if(!payload){
-            return res.status(401).send({message: 'Unauthorized. Auth Header Invalid'});
+
+        if (!payload) {
+            return res.status(401).send({ message: 'Unauthorized. Auth Header Invalid' });
         }
-        
+
         req.userId = payload.sub;
         next();
     }

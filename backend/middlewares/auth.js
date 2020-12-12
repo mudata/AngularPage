@@ -10,8 +10,6 @@ module.exports = function (req, res, next) {
     if (err) { next(err); return; }
     req.user = { _id: decoded.userId };
     res.locals.isLogged = !!req.user;
-    
-    //console.log(decoded)
 
     userModel.findById(decoded.userId).lean().then(user => {
       res.locals.username=user.username;

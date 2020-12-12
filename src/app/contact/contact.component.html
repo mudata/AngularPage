@@ -46,22 +46,34 @@
             <div id="errormessage"></div>
             
             <form (submit)=sendMail() #contactForm="ngForm">
-              <div class="form-group">
-                <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" [(ngModel)]="mail.name" />
-                <div class="validation"></div>
-              </div>
-              <div class="form-group">
-                <input type="email" class="form-control" name="from" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email"[(ngModel)]="mail.from" />
-                <div class="validation"></div>
-              </div>
-              <div class="form-group">
-                <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" [(ngModel)]="mail.subject" />
-                <div class="validation"></div>
-              </div>
-              <div class="form-group">
-                <textarea class="form-control" name="text" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message" [(ngModel)]="mail.text"></textarea>
-                <div class="validation"></div>
-              </div>
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Your Name</mat-label>
+                <input  required minlength="4" type="tel" matInput placeholder="Name" name="name" [(ngModel)]="mail.name" >
+                <mat-icon matSuffix></mat-icon>
+                
+            </mat-form-field>
+
+
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Your Email</mat-label>
+                <input  required minlength="4" type="tel" matInput placeholder="Name" name="from" [(ngModel)]="mail.from" >
+                <mat-icon matSuffix></mat-icon>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Subject</mat-label>
+              <input  required minlength="4" type="tel" matInput placeholder="Name" name="subject" [(ngModel)]="mail.subject" >
+              <mat-icon matSuffix></mat-icon>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Message ...</mat-label>
+            <input  required minlength="4" type="tel" matInput name="text" [(ngModel)]="mail.text" >
+            <mat-icon matSuffix></mat-icon>
+        </mat-form-field>
+
+        
+
               <div class="text-center"><button type="submit">Send Message</button></div>
             </form>
           </div>
