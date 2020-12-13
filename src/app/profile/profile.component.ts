@@ -17,8 +17,8 @@ export class ProfileComponent implements OnInit {
   constructor( public cartService: CartService, private router: Router,public authService: AuthService) { }
 
   ngOnInit(): void {
-    this.name=localStorage.getItem("name")
-    this.email=localStorage.getItem("email")
+    this.name=localStorage.getItem("name");
+    this.email=localStorage.getItem("email");
     this.description=localStorage.getItem("description");
     console.log(this.name,this.description,this.email)
     this.cartService.updateCartList();

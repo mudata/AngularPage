@@ -88,7 +88,7 @@ export class ItemListComponent implements OnInit {
     console.log(option);
     this.items = [];
     this.itemService.loadItemList().subscribe((items2) => {
-      if (option == "Vsichki") {
+      if (option == "Всички") {
 
         if (text == "") {
           this.items = items2["Items"];
@@ -118,12 +118,13 @@ export class ItemListComponent implements OnInit {
         });
         const reg = RegExp(`${text.toLowerCase()}`)
         let newarr = [];
-        console.log(newarr)
+        
         this.items.forEach(element => {
           if (reg.test(element.title.toLowerCase()) == true) {
             newarr.push(element);
           }
         });
+        console.log(newarr)
         this.items = newarr;
         console.log(this.items)
 

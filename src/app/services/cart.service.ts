@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-// import { Item } from './models/item';
 import { HttpClient } from '@angular/common/http';
 import { IItem } from "../interfaces/item";
 import { Router } from '@angular/router';
 import { AlertService } from '../_alert';
-
+import { environment } from 'src/environments/environment';
+const apiUrl = environment.apiUrl;
 @Injectable({
   providedIn: 'root'
 })
@@ -20,7 +20,7 @@ export class CartService {
      ) { }
 
   addToCart(item) {
-    this.http.post<{ message: string, item: IItem }>('http://localhost:3000/api/cart', item).subscribe((res) => {
+    this.http.post<{ message: string, item: IItem }>(`${apiUrl}/cart`, item).subscribe((res) => {
       this.alertService.success('Item Added To Cart!!', this.options);  
     this.updateCartList();
     });
@@ -31,7 +31,7 @@ export class CartService {
   }
 
   deleteFromCart(item) {
-    this.http.delete(`http://localhost:3000/api/cart/${item._id}`).subscribe((res) => {
+    this.http.delete(`${apiUrl}/cart/${item._id}`).subscribe((res) => {
       this.updateCartList()
     });
     
@@ -43,7 +43,7 @@ export class CartService {
   }
 
   getCart() {
-    return this.http.get(`http://localhost:3000/api/cart/`)
+    return this.http.get(`${apiUrl}/cart`)
   }
 
   updateCartList() {
@@ -55,12 +55,12 @@ export class CartService {
   submitOrder(contact) {
     const orderData = { "contact": contact, "items": this.items };
     
-    this.http.post('http://localhost:3000/api/order', orderData)
+    this.http.post(`${apiUrl}/order`, orderData)
       .subscribe(() => {
         console.log("SEND ORDER" + orderData);
       })
       
-      this.http.delete(`http://localhost:3000/api/cart/all`).subscribe(() => {
+      this.http.delete(`${apiUrl}/cart/all`).subscribe(() => {
         this.alertService.success('Submit Order!!', this.options);
         this.alertService.success('Delete Cart!!', this.options)
         this.updateCartList();
@@ -68,14 +68,14 @@ export class CartService {
   }
   increaseQuantity(quantity, id) {
     this.alertService.success('Increase Quantity!!', this.options)
-    this.http.put('http://localhost:3000/api/cart', { quantity, id, increase: "" }).subscribe((res) => {
+    this.http.put(`${apiUrl}/cart`, { quantity, id, increase: "" }).subscribe((res) => {
       // this.updateCartList();
     });
   }
   decreaseQuantity(quantity, id) {
     
     if (quantity == "1") {
-      this.http.delete(`http://localhost:3000/api/cart/${id}`).subscribe((res) => {
+      this.http.delete(`${apiUrl}/cart/${id}`).subscribe((res) => {
         this.getCart().subscribe((item: IItem[]) => {
           this.items = item['Items'];
           // window.location.reload();
@@ -84,7 +84,7 @@ return;
       });
     }
     this.alertService.success('Decrease Quantity!!', this.options)
-    this.http.put('http://localhost:3000/api/cart', { quantity, id, decrease: "" }).subscribe((res) => {
+    this.http.put(`${apiUrl}/cart`, { quantity, id, decrease: "" }).subscribe((res) => {
       // this.updateCartList();
     });
   }

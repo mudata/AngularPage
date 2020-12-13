@@ -63,6 +63,7 @@ export class AuthService {
         localStorage.setItem(this.TOKEN_KEY, token);
     }
     saveData(data){
+        console.log(data)
         localStorage.setItem(this.emailName,data.email);
         localStorage.setItem(this.name,data.name);
         localStorage.setItem(this.description,data.description);

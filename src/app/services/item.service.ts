@@ -53,11 +53,11 @@ export class ItemService {
         this.items.push(resdish);
         
         this.alertService.success('Added Item!!', this.options)
-       this.http.delete(`http://localhost:3000/api/item/${item._id}`);
+       this.http.delete(`${apiUrl}/item/${item._id}`);
       });
   }
   getItems() {
-    return this.http.get(`http://localhost:3000/api/item/`)
+    return this.http.get(`${apiUrl}/item/`)
   }
   updateItemList() {
     this.getItems().subscribe((items: IItem[]) => {
@@ -66,10 +66,10 @@ export class ItemService {
   }
   deleteItem(item) {
     this.alertService.success('Delete Item!!', this.options)
-    return this.http.delete(`http://localhost:3000/api/item/${item._id}`);
+    return this.http.delete(`${apiUrl}/item/${item._id}`);
   }
   getItem(id) {
-    return this.http.get(`http://localhost:3000/api/item/${id}`);
+    return this.http.get(`${apiUrl}/item/${id}`);
   }
 
 
