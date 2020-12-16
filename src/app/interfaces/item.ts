@@ -3,7 +3,9 @@ export interface IItem {
   title: string;
   category: string;
   disc: string;
-  image: any;
-  quantity:any;
+  image?: any;
   price: number;
+  quantity:any;
+  comments:[];
 }
+

@@ -1,10 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { IItem } from '../interfaces/item';
-import { Item } from '../models/item';
-import { ItemService } from '../services/item.service';
-import { AlertService } from '../_alert';
+import { IItem } from '../../interfaces/item';
+import { ItemService } from '../../services/item.service';
+import { AlertService } from '../../alert';
 
 @Component({
   selector: 'app-edit',
@@ -20,6 +19,7 @@ export class EditComponent implements OnInit {
     image: '',
     quantity: 1,
     price: null,
+    comments:[]
   };
   imagePreview: any;
   image;
@@ -41,7 +41,6 @@ export class EditComponent implements OnInit {
     });
   }
   editItem() {
-
     this.itemService.editItem(this.item, this.id);
     this.http.delete(`http://localhost:3000/api/item/${this.id}`);
     this.item = {
@@ -50,10 +49,10 @@ export class EditComponent implements OnInit {
       disc: '',
       quantity: 1,
       image: '',
-      price: null
+      price: null,
+      comments:[]
     };
     this.alertService.success('Edited Item!!', this.options)
-    // this.router.navigate(['/list']);
   }
   onImagePicked(event) {
     const file = event.target.files[0];

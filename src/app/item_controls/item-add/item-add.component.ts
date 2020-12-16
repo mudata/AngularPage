@@ -3,8 +3,8 @@ import { Component, OnInit } from '@angular/core';
 // import {} from '.../backend/models/item';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { ItemService } from '../services/item.service';
-import { IItem } from "../interfaces/item";
+import { ItemService } from '../../services/item.service';
+import { IItem } from "../../interfaces/item";
 
 
 @Component({
@@ -23,6 +23,7 @@ export class ItemAddComponent implements OnInit {
     quantity:1,
     image: '',
     price: null,
+    comments:[]
   };
   imagePreview: any;
   image;
@@ -42,7 +43,8 @@ export class ItemAddComponent implements OnInit {
       disc: '',
       quantity:1,
       image: '',
-      price: null
+      price: null,
+      comments:[]
     };
     this.router.navigate(['/list']);
     

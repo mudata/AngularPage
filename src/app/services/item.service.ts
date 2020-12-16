@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { IItem } from "../interfaces/item";
-import { AlertService } from '../_alert';
+import { AlertService } from '../alert';
 const apiUrl = environment.apiUrl;
 @Injectable()
 
@@ -12,6 +12,7 @@ export class ItemService {
   options = {
     autoClose: true,
 };
+item:any;
   items: IItem[] = [];
   constructor(
     private router: Router,

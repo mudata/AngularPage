@@ -5,7 +5,7 @@ import {FormsModule} from '@angular/forms';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.modules';
-import {  MatInputModule, MatCardModule, MatButtonModule, MatToolbarModule, MatExpansionModule, MatRadioModule, MatIconModule, MatTableModule, MatGridListModule, MatListModule, MatFormFieldModule, MAT_FORM_FIELD_DEFAULT_OPTIONS, MatSnackBarModule } from '@angular/material';
+import { MatInputModule, MatCardModule, MatButtonModule, MatToolbarModule, MatExpansionModule, MatRadioModule, MatIconModule, MatTableModule, MatGridListModule, MatListModule, MatFormFieldModule, MAT_FORM_FIELD_DEFAULT_OPTIONS, MatSnackBarModule } from '@angular/material';
 import {MatBadgeModule} from '@angular/material/badge';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ContactComponent } from './contact/contact.component';
@@ -22,13 +22,15 @@ import { AuthService} from './services/auth.service';
 import { HomeComponent } from './home/home.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthInterceptorService } from './services/authInterceptor.service';
-import { ItemAddComponent } from './item-add/item-add.component';
-import { ItemListComponent } from './item-list/item-list.component';
-import { ItemDetailComponent } from './item-detail/item-detail.component';
+import { ItemAddComponent } from './item_controls/item-add/item-add.component';
+import { ItemListComponent } from './item_controls/item-list/item-list.component';
+import { ItemDetailComponent } from './item_controls/item-detail/item-detail.component';
 import { ProfileComponent } from './profile/profile.component';
 import {MatSelectModule} from '@angular/material/select';
-import { EditComponent } from './edit/edit.component';
-import { AlertModule } from './_alert';
+import { EditComponent } from './item_controls/edit-edit/edit.component';
+import { AlertModule } from './alert';
+import { IndexComponent } from './index/index.component';
+import { AuthGuard } from './services/auth-gaurd.service';
 declare module "@angular/core" {
   interface ModuleWithProviders<T = any> {
       ngModule: Type<T>;
@@ -52,6 +54,7 @@ declare module "@angular/core" {
     HomeComponent,
     ProfileComponent,
     EditComponent,
+    IndexComponent
   ],
   imports: [
     MatListModule,
@@ -86,6 +89,7 @@ declare module "@angular/core" {
   ],
   providers: [
     ItemService,
+    AuthGuard,
     AuthService, 
     {
         provide: HTTP_INTERCEPTORS,

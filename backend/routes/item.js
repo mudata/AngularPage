@@ -4,6 +4,7 @@ const Item = require("../models/item");
 const router = express.Router();
 const mongoose = require("mongoose");
 mongoose.set('useFindAndModify', false);
+const auth = require('../auth');
 const MIME_TYPE_MAP = {
     "image/png": "png",
     "image/jpeg": "jpg",
@@ -25,7 +26,7 @@ var storage = multer.diskStorage({
 });
 
 router.post(
-    "",
+     auth.checkAuthenticated,
     multer({ storage: storage }).single("image"),
     (req, res, next) => {
         const url = req.protocol + "://" + req.get("host");

@@ -54,7 +54,6 @@ function createSendToken(res, user) {
     const payload = { sub: user._id };
     const token = jwt.encode(payload, '123');
     res.status(200).send({ user, token });
-    // res.status(200).send({token});
 }
 
 
@@ -62,7 +61,7 @@ const auth = {
     router,
     checkAuthenticated: (req, res, next) => {
         if (!req.header('authorization')) {
-            return res.status(401).send({ message: 'Unauthorized. Missing Auth Header' });
+            return res.status(401).send({ message: 'Unauthorized. Missing Auth Header12121' });
         }
 
         const token = req.header('authorization').split(' ')[1];

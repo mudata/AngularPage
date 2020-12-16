@@ -1,11 +1,12 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { CartService } from '../services/cart.service';
-import { IItem } from "../interfaces/item";
-import { ItemService } from '../services/item.service';
+import { CartService } from '../../services/cart.service';
+import { IItem } from "../../interfaces/item";
+import { ItemService } from '../../services/item.service';
 import { environment } from 'src/environments/environment';
 import { FormControl, FormGroup } from '@angular/forms';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { AuthService } from '../services/auth.service';
+import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 const apiUrl = environment.apiUrl;
 
@@ -23,7 +24,8 @@ export class ItemListComponent implements OnInit {
     public cartService: CartService,
      private itemService: ItemService,
       public http: HttpClient,
-      public authService: AuthService
+      public authService: AuthService,
+      private router: Router,
       ) { }
   categories;
   b: false;
@@ -161,4 +163,5 @@ export class ItemListComponent implements OnInit {
 
     }
   }
+  
 }

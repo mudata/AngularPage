@@ -1,9 +1,7 @@
 import { AfterViewInit, Component, OnInit} from '@angular/core';
 import { CartService } from '../services/cart.service';
-import { Item } from '../models/item'
 import { Router } from '@angular/router';
 import { IItem } from "../interfaces/item";
-import { ItemService } from '../services/item.service';
 import { AuthService } from '../services/auth.service';
 
 
@@ -43,7 +41,6 @@ export class CartComponent implements OnInit {
     this.cartService.getCart().subscribe((items2) => {
 
       this.items = items2['Items'];
-      //console.log(this.items)
     });
     
   }

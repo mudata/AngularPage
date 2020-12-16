@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { IItem } from "../interfaces/item";
 import { Router } from '@angular/router';
-import { AlertService } from '../_alert';
+import { AlertService } from '../alert';
 import { environment } from 'src/environments/environment';
 const apiUrl = environment.apiUrl;
 @Injectable({

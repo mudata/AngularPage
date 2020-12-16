@@ -33,11 +33,6 @@ app.use(express.urlencoded({ limit: '50MB', extended: true }));
 app.use("/images", express.static(path.join("backend/images")));
 
 app.use((req, res, next) => {
-    // res.setHeader(
-    //     "Access-Control-Allow-Headers",
-    //     "Origin, X-Requested-With, content-type, Accept"
-    // );
-
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT,DELETE");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, content-type, Accept, Authorization");

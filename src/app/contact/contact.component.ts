@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { Router } from '@angular/router';
-import { AlertService } from '../_alert';
+import { AlertService } from '../alert';
 import { ContactService } from '../services/contact.service';
 
 @Component({
