@@ -25,8 +25,8 @@ var storage = multer.diskStorage({
     }
 });
 
-router.post(
-     auth.checkAuthenticated,
+router.post("",
+   auth.checkAuthenticated,
     multer({ storage: storage }).single("image"),
     (req, res, next) => {
         const url = req.protocol + "://" + req.get("host");
@@ -86,7 +86,7 @@ router.get("/:id", (req, res, next) => {
     });
 });
 
-router.delete("/:id", (req, res, next) => {
+router.delete("/:id",auth.checkAuthenticated, (req, res, next) => {
     console.log(Item.toString())
     Item.deleteOne({ _id: req.params.id }).then(result => {
         console.log(result);
