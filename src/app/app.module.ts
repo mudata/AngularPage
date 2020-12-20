@@ -27,7 +27,7 @@ import { ItemListComponent } from './item_controls/item-list/item-list.component
 import { ItemDetailComponent } from './item_controls/item-detail/item-detail.component';
 import { ProfileComponent } from './profile/profile.component';
 import {MatSelectModule} from '@angular/material/select';
-import { EditComponent } from './item_controls/edit-edit/edit.component';
+import { EditComponent } from './item_controls/item-edit/edit.component';
 import { AlertModule } from './alert';
 import { IndexComponent } from './index/index.component';
 import { AuthGuard } from './services/auth-gaurd.service';

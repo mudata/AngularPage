@@ -33,7 +33,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import {MatGridList} from '@angular/material/grid-list'
-// mat-grid-list
+
 const materialModules = [
   MatGridList,
   CdkTreeModule,
